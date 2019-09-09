@@ -6,7 +6,7 @@ import random
 
 
 # Optional features for later
-# Take .crv files with names and passwords, then make them into users.
+# Take .csv files with names and passwords, then make them into users.
 # Take a password file and add them to the users accordingly
 
 def importFile(fileName):
