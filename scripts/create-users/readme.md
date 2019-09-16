@@ -1,4 +1,5 @@
-<h6>There are four files provided:</h6>
+<h3>Creating Users with Scripts</h3>
+<h5>There are four files provided:</h5>
 <b>createUsersByHand.py</b> - This scrips moves you though each user being created. Input their name - press enter, and so on.
 
 <b>createUsersCSV.py</b> - Automatically creates users using a CSV. It will automatically apply users to groups and give them passwords that you give. The CSV must be set up exact - use the test as a reference.
