@@ -97,9 +97,8 @@ def addToGroup(usernameList,groupList):  # takes in a list of users and password
 
 
 print("This program is used to make some users.")
-print("The file being imported must be a txt named \"users.txt\".")
+print("The file being imported must be a txt named \"users.txt\" and \"groups.txt\".")
 print("Save the file in the directory from which this is being ran.")
-print("Would you like to create or delete the users? c/d")
 nameList = importFile("users.txt")  # this will return a list of lists containing the user information.
 print(nameList)
 groupList = importFile("groups.txt")
