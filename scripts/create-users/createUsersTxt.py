@@ -94,8 +94,8 @@ def createUsers(usernameList,passwordList):  # takes in a list of users and pass
 def removeUsers(usernameList):
     print("Removing the users:")
     for count, aName in enumerate(usernameList):
-        print(aName)
         os.system("userdel -r " + aName)  # userdel -r (to also delete the directory) to delete users.
+        print(aName + " has been deleted.")
 
     print("done.")
 
@@ -108,26 +108,19 @@ def removeUsers(usernameList):
 print("This program is used to make some users.")
 print("The file being imported must be a txt named \"users.txt\".")
 print("Save the file in the directory from which this is being ran.")
-
+print("Would you like to create or delete the users? c/d")
 nameList = importFile("users.txt")  # this will return a list of lists containing the user information.
-
-usernames = convertNameToUsernames(nameList)
-passwords = getPasswords(nameList)
-
-createUsers(usernames, passwords)
-
-print("done")
-#userNameList = convertNameToUsernames(nameList)  # convert the names to usernames
-
-
-# At this point we have the usernames and passwords. Lets create the users
-#createUsers(userNameList, passwordList)
-
-print("Would you like to delete all created users? (y/n)")
 answer = input()
-if answer == 'y' or answer == 'Y':
-    #removeUsers(userNameList)
-    print("done.")
+if answer == "d" or answer == "D" or answer == "delete" or answer == "Delete": #Delete Users
+    print("Deleting Users.")
+    usernames = convertNameToUsernames(nameList)
+    removeUsers(usernames)
+
+else: #Create Users
+    print("Creating Users.")
+    usernames = convertNameToUsernames(nameList)
+    passwords = getPasswords(nameList)
+    createUsers(usernames, passwords)
 
 print("You're all set. Have a good one!")
 
