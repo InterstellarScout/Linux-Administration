@@ -1,5 +1,4 @@
 import os
-import crypt
 import sys
 import csv
 import re
@@ -14,15 +13,12 @@ def importFile(fileName):
     try:
         file = open(fileName, "r")
         contents = file.read()
-        #print(contents)
         rowContents = contents.split('\n') #make a list consisting of the rows
-        #print(rowContents)
         dataContents = []
 
         for row in rowContents:
             dataContents.append(row.split(',')) #make a list consisting of the rows
 
-        print(dataContents)
         file.close()
 
         try:#Delete first row and crap entries
@@ -38,7 +34,6 @@ def importFile(fileName):
             print("Something went wrong")
             exit()
 
-        print(finalList)
         return finalList
 
     except:
@@ -58,6 +53,14 @@ def getPasswords(nameList):
 
     return passwordList
 
+def convertListToStrings(OriginalList):
+    GroupList = []  # used to hold the new usernames
+    for count, aGroup in enumerate(OriginalList):  # this does not need to be enumerated.
+        preConvert = re.split('\W+', str(aGroup)) #Returns [ '', 'developers', '' ]
+        GroupList.append(preConvert[1])  # Add the username to the user list
+
+    print(GroupList)
+    return GroupList
 
 def convertNameToUsernames(nameList):
     print("Creating usernames:")
@@ -81,24 +84,12 @@ def convertNameToUsernames(nameList):
     return usernameList
 
 
-def createUsers(usernameList,passwordList):  # takes in a list of users and passwords, then adds them in mass.
-    print("Creating the users:")
+def addToGroup(usernameList,groupList):  # takes in a list of users and passwords, then adds them in mass.
+    print("Adding Users to Groups:")
     for count, item in enumerate(usernameList):
-        print(item)#username
-        print(passwordList[count])#password
-        encPass = crypt.crypt(passwordList[count], "22")  # 22 is a salt number, use crypt per useradd manual
-        os.system("sudo useradd -m -p " + encPass + " " + item)  # useradd -m -p encryptedpass username -G group1
-        print("done adding " + item)
-
-
-def removeUsers(usernameList):
-    print("Removing the users:")
-    for count, aName in enumerate(usernameList):
-        os.system("sudo userdel -r " + aName)  # userdel -r (to also delete the directory) to delete users.
-        print(aName + " has been deleted.")
-
-    print("done.")
-
+        print(item + " is bring added to: " + str(groupList[count]))#username
+        os.system("sudo usermod -a -G " + groupList[count] + " " + item)  # usermod -a -G sudo geek
+        print("done")
 
     ####################################################################
     ############################   MAIN   ##############################
@@ -110,17 +101,15 @@ print("The file being imported must be a txt named \"users.txt\".")
 print("Save the file in the directory from which this is being ran.")
 print("Would you like to create or delete the users? c/d")
 nameList = importFile("users.txt")  # this will return a list of lists containing the user information.
-answer = input()
-if answer == "d" or answer == "D" or answer == "delete" or answer == "Delete": #Delete Users
-    print("Deleting Users.")
-    usernames = convertNameToUsernames(nameList)
-    removeUsers(usernames)
+print(nameList)
+groupList = importFile("groups.txt")
+print(groupList)
 
-else: #Create Users
-    print("Creating Users.")
-    usernames = convertNameToUsernames(nameList)
-    passwords = getPasswords(nameList)
-    createUsers(usernames, passwords)
+usernames = convertNameToUsernames(nameList)
+finalGroupList = convertListToStrings(groupList)
+
+print("Adding users to Groups")
+addToGroup(usernames, finalGroupList)
 
 print("You're all set. Have a good one!")
 
