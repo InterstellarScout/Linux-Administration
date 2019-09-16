@@ -64,16 +64,16 @@ def convertNameToUsernames(nameList):
     usernameList = []  # used to hold the new usernames
 
     for count, aName in enumerate(nameList):  # this does not need to be enumerated.
-        preConvert = re.split('\W+', aName)  # Split the name into only text, excluding all hyphens and quotes.
+        preConvert = re.split('\W+', str(aName))  # Split the name into only text, excluding all hyphens and quotes.
 
         # take the first letter of the first string
-        for count, position in enumerate(preConvert[0]):  # take first word
-            if count == 0:
+        for count, position in enumerate(preConvert[1]):  # take first word
+            if count is 0:
                 letter = position.lower()  # Takes the first letter and makes it lowercase
 
         wordCount = len(preConvert)  # get the legnth of the user's name
 
-        username = letter + preConvert[wordCount - 1].lower()  # Combine the first letter and lowercase last name
+        username = letter + preConvert[wordCount - 2].lower()  # Combine the first letter and lowercase last name
 
         usernameList.append(username)  # Add the username to the user list
 
@@ -87,8 +87,8 @@ def createUsers(usernameList,passwordList):  # takes in a list of users and pass
         print(item)#username
         print(passwordList[count])#password
         encPass = crypt.crypt(passwordList[count], "22")  # 22 is a salt number, use crypt per useradd manual
-        os.system(print("useradd -m -p " + encPass + " " + item)  # useradd -m -p encryptedpass username -G group1
-    print("done adding " + item)
+        os.system("useradd -m -p " + encPass + " " + item)  # useradd -m -p encryptedpass username -G group1
+        print("done adding " + item)
 
 
 def removeUsers(usernameList):
@@ -109,7 +109,7 @@ print("This program is used to make some users.")
 print("The file being imported must be a txt named \"users.txt\".")
 print("Save the file in the directory from which this is being ran.")
 
-nameList = importFile("users.csv")  # this will return a list of lists containing the user information.
+nameList = importFile("users.txt")  # this will return a list of lists containing the user information.
 
 usernames = convertNameToUsernames(nameList)
 passwords = getPasswords(nameList)
