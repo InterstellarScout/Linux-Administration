@@ -28,7 +28,18 @@ def getFile(fileName):
         return contents
 
     except:
-        print("Something went wrong!")
+        try:
+            #file = open(fileName, "r")
+            file = open(fileName, encoding="utf8")
+            contents = file.read()
+            # print(contents)
+            contents = contents.split('\n')  # make a list consisting of the rows
+
+            file.close()
+            return contents
+        except:
+            print("Option 2 failed too...")
+        print("Something went wrong! Please Check your file. ")
         exit()
 
 def chooseMessage(allMessages):
