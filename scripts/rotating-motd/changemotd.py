@@ -1,6 +1,8 @@
 #Run this script to change the message of the day.
 #Edit the Function "StaticMessage" to change what doesn't change.
-#Future ideas are Display IP Address - Quote - Jokes
+#Run this program as sudo python changemotd.py
+#Place it where it can't be touched easily like /etc/
+#Cronjob every 1 minute.
 #Dean Sheldon
 import datetime
 import os
@@ -64,12 +66,12 @@ ipInfo = "Your IP address is: " + getIP()
 allMessages = getFile("inspirationalQuotes.txt")
 #allMessages = getFile("jokes.txt")
 
-message = staticMessage() #Get the standard message
+message = staticMessage() # Get the standard message
 print(message)
 message = message + "\n" + ipInfo + "\n" + chooseMessage(allMessages) + "\n"
 print(message)
 
-#Create a file that will become MOTD
+# Create a file that will become MOTD
 f = open("motd", "w")
 f.write(message)
 f.close()
