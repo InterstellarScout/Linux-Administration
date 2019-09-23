@@ -1,0 +1,25 @@
+Read chapter 4 of the book at https://flylib.com/books/en/4.356.1.25/1/
+
+
+
+Complete the following problems on the attached file datebook.  Submit a text file with the grep command used to get the requested results.  Results of the command aren't needed.
+
+Print all lines containing the string San .
+
+Print all lines where the person's first name starts with J .
+
+Print all lines ending in 700 .
+
+Print all lines that don't contain 834 .
+
+Print all lines where birthdays are in December .
+
+Print all lines where the phone number is in the 408 area code.
+
+Print all lines containing an uppercase letter, followed by four lowercase letters , a comma, a space, and one uppercase letter.
+
+Print lines where the last name begins with K or k .
+
+Print lines preceded by a line number where the salary is a six-figure number.
+
+Print lines containing Lincoln or lincoln (remember that grep is insensitive to case).

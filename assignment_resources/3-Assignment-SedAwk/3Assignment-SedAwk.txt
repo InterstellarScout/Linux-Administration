@@ -1,0 +1,56 @@
+Dean Sheldon
+Homework 2
+Sed (Use the file attached called datebook)
+Read the chapter from https://flylib.com/books/en/4.356.1.40/1/ then complete this part of the lab
+1. Change the name Jon to Jonathan .
+2. Delete the first three lines.
+3. Print lines 5 through 10 .
+4. Delete lines containing Lane .
+5. Print all lines where the birthdays are in November or December .
+6. Append three asterisks to the end of lines starting with Fred .
+7. Replace the line containing Jose with JOSE HAS RETIRED .
+8. Change Popeye 's birthday to 11/14/46 . Assume you don't know Popeye's original birthday. Use a regular expression to search for it.
+9. Delete all blank lines.
+10. Write a sed script that will
+	a. Insert above the first line the title PERSONNEL FILE .
+	b. Remove the salaries ending in 500 .
+	c. Print the contents of the file with the last names and first names reversed .
+	d. Append at the end of the file THE END .
+
+
+Awk (use the file attached called lab3.data)
+Read the chapter at https://flylib.com/books/en/4.356.1.52/1/ and then complete this part of the lab
+The database contains the names , phone numbers , and money contributions to the party campaign for the past three months.
+1.	Print all the phone numbers.
+2.	Print Dan 's phone number.
+3.	Print Susan 's name and phone number.
+4.	Print all last names beginning with D .
+5.	Print all first names beginning with either a C or E .
+6.	Print all first names containing only four characters .
+7.	Print the first names of all those in the 916 area code.
+8.	Print Mike 's campaign contributions. Each value should be printed with a leading dollar sign; e.g., $250 $100 $175.
+9.	Print last names followed by a comma and the first name.
+10.	Write an awk script called facts that
+1.	Prints full names and phone numbers for the Savages .
+2.	Prints Chet 's contributions.
+3.	Prints all those who contributed $250 the first month.
+Awk (use the lab4.data file)
+The database contains the names , phone numbers , and money contributions to the party campaign for the past three months.
+1.	Print the first and last names of those who contributed more than $100 in the second month.
+2.	Print the names and phone numbers of those who contributed less than $85 in the last month.
+3.	Print the names of those who contributed between $75 and $150 in the first month.
+4.	Print the names of those who contributed less than $800 over the three-month period.
+5.	Print the names and addresses of those with an average monthly contribution greater than $200 .
+6.	Print the first name of those not in the 916 area code.
+7.	Print each record preceded by the number of the record.
+8.	Print the name and total contribution of each person.
+9.	Add $10 to Chet 's second contribution.
+10.	Change Nancy McNeil 's name to Louise McInnes .
+OPTIONAL CHALLENGE:
+nawk on lab5.data and lab6.data
+Write a nawk script that will fulfill each of these lab requirements.  Lab files are attached.
+https://flylib.com/books/en/4.356.1.71/1/
+https://flylib.com/books/en/4.356.1.80/1/
+
+Turn in all scripts as well as the sed or awk statements you used for each question, clearly labeled so I can tell which question goes with which answer.
+
