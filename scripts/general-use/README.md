@@ -1,0 +1,1 @@
+This directory contains script used for general purposes.

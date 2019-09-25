@@ -1,0 +1,1 @@
+This tool is used to take a ping of the destination server, and export it as data to be analyzed.
