@@ -42,6 +42,7 @@ ip link show >> links.txt
 
 if grep -q "eth0" "links.txt"; then
   printf "\nInterface eth0: \n"
+  printf "\nInterface eth0: \n" >> $file
   ip4=$(/sbin/ip -o -4 addr list eth0 | awk '{print $4}' | cut -d/ -f1)
   ip6=$(/sbin/ip -o -6 addr list eth0 | awk '{print $4}' | cut -d/ -f1)
   #printf "\nYour local IPv4 address on interface eth0 is $ip4\n"
@@ -51,12 +52,14 @@ if grep -q "eth0" "links.txt"; then
 
   if [ "$ip4" == "127.0.0.1" ]; then
     echo Interface eth0 is not connected and has the address 127.0.0.1, a loopback address.
+    echo Interface eth0 is not connected and has the address 127.0.0.1, a loopback address. >> $file
   else
     echo Interface eth0 has the IPv4 address $ip4
     echo Interface eth0 has the IPv4 address $ip4 >> $file
   fi
   if [ "$ip6" == "::1" ]; then
     echo Interface eth0 IPv6 is not connected and has the address ::1, a loopback address.
+    echo Interface eth0 IPv6 is not connected and has the address ::1, a loopback address. >> $file
   else
     echo Your local interface, eth0, has the IPv6 address $ip6
     echo Your local interface, eth0, has the IPv6 address $ip6 >> $file
@@ -65,6 +68,7 @@ fi
 
 if grep -q "lo" "links.txt"; then
   printf "\nInterface lo: \n"
+  printf "\nInterface lo: \n" >> $file
   lo_ip4=$(/sbin/ip -o -4 addr list lo | awk '{print $4}' | cut -d/ -f1)
   lo_ip6=$(/sbin/ip -o -6 addr list lo | awk '{print $4}' | cut -d/ -f1)
   #printf "\nYour local IPv4 address on interface lo is $lo_ip4\n"
@@ -74,12 +78,14 @@ if grep -q "lo" "links.txt"; then
 
   if [ "$lo_ip4" == "127.0.0.1" ]; then
   echo Local interface lo is not connected and has the address 127.0.0.1, a loopback address.
+  echo Local interface lo is not connected and has the address 127.0.0.1, a loopback address. >> $file
   else
     echo Your local interface, lo, has the IPv4 address $lo_ip4
     echo Your local interface, lo, has the IPv4 address $lo_ip4 >> $file
   fi
   if [ "$lo_ip6" == "::1" ]; then
   echo Local interface lo is not connected and has the address ::1, a loopback address.
+  echo Local interface lo is not connected and has the address ::1, a loopback address. >> $file
   else
     echo Your local interface, lo, has the IPv6 address $ip6
     echo Your local interface, lo, has the IPv6 address $ip6 >> $file
@@ -89,6 +95,7 @@ fi
 #if wlan0 is found:
 if grep -q "wlan0" "links.txt"; then
   printf "\nInterface wlan0: \n"
+  printf "\nInterface wlan0: \n" >> $file
   wlan0_ip4=$(/sbin/ip -o -4 addr list wlan0 | awk '{print $4}' | cut -d/ -f1)
   wlan0_ip6=$(/sbin/ip -o -6 addr list wlan0 | awk '{print $4}' | cut -d/ -f1)
   #printf "\nYour local IPv4 address on interface wlan0 is $wlan0_ip4\n"
@@ -98,12 +105,14 @@ if grep -q "wlan0" "links.txt"; then
 
   if [ $wlan0_ip4 == "127.0.0.1" ]; then
   echo Interface wlan0 is not connected and has the address 127.0.0.1, a loopback address.
+  echo Interface wlan0 is not connected and has the address 127.0.0.1, a loopback address. >> $file
   else
     echo Interface wlan0 has the IPv6 address $wlan0_ip4
     echo Interface wlan0 has the IPv6 address $wlan0_ip4 >> $file
     fi
   if [ $wlan0_ip6 == "::1" ]; then
-  echo Interface wlan0 is not connected and has the address 127.0.0.1, a loopback address.
+  echo Interface wlan0 is not connected and has the address ::1, a loopback address.
+  echo Interface wlan0 is not connected and has the address ::1, a loopback address. >> $file
   else
     echo Your local interface, wlan0, has the IPv6 address $wlan0_ip6
     echo Your local interface, wlan0, has the IPv6 address $wlan0_ip6 >> $file
@@ -117,6 +126,7 @@ rm links.txt
 #awk help thanks to: https://stackoverflow.com/questions/48606867/how-to-print-the-next-word-after-a-found-pattern-with-grep-sed-and-awk
 DNS=$(awk '{for(i=1;i<=NF;i++)if($i=="nameserver")print $(i+1)}' /etc/resolv.conf)
 printf "/n/nDNS Servers: $DNS"
+printf "/n/nDNS Servers: $DNS" >> $file
 
 #Get the Mac Address
 MAC=$(ifconfig eth0 | grep -Eo ..\(\:..\){5})
