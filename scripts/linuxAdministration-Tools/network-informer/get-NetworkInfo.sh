@@ -41,6 +41,7 @@ ip link show >> links.txt
 #Now lets show results for each active interface. This format works woth eth0, lo, and wlan0
 
 if grep -q "eth0" "links.txt"; then
+  printf "\nInterface eth0: \n"
   ip4=$(/sbin/ip -o -4 addr list eth0 | awk '{print $4}' | cut -d/ -f1)
   ip6=$(/sbin/ip -o -6 addr list eth0 | awk '{print $4}' | cut -d/ -f1)
   #printf "\nYour local IPv4 address on interface eth0 is $ip4\n"
@@ -61,6 +62,7 @@ if grep -q "eth0" "links.txt"; then
 fi
 
 if grep -q "lo" "links.txt"; then
+  printf "\nInterface lo: \n"
   lo_ip4=$(/sbin/ip -o -4 addr list lo | awk '{print $4}' | cut -d/ -f1)
   lo_ip6=$(/sbin/ip -o -6 addr list lo | awk '{print $4}' | cut -d/ -f1)
   #printf "\nYour local IPv4 address on interface lo is $lo_ip4\n"
@@ -69,19 +71,20 @@ if grep -q "lo" "links.txt"; then
   #printf "\nYour local IPv6 address on interface lo is $lo_ip6\n" >> $file
 
   if [ "$lo_ip4" == "127.0.0.1" ]; then
-  echo Interface lo is not connected and has the address 127.0.0.1, a loopback address.
+  echo Local interface lo is not connected and has the address 127.0.0.1, a loopback address.
   else
     echo Your local interface, lo, has the IPv4 address $lo_ip4
   fi
   if [ "$lo_ip6" == "::1" ]; then
-  echo Interface lo is not connected and has the address ::1, a loopback address.
+  echo Local interface lo is not connected and has the address ::1, a loopback address.
   else
-    echo Interface lo has the IPv6 address $ip6
+    echo Your local interface, lo, has the IPv6 address $ip6
   fi
 fi
 
 #if wlan0 is found:
 if grep -q "wlan0" "links.txt"; then
+  printf "\nInterface wlan0: \n"
   wlan0_ip4=$(/sbin/ip -o -4 addr list wlan0 | awk '{print $4}' | cut -d/ -f1)
   wlan0_ip6=$(/sbin/ip -o -6 addr list wlan0 | awk '{print $4}' | cut -d/ -f1)
   #printf "\nYour local IPv4 address on interface wlan0 is $wlan0_ip4\n"
@@ -104,12 +107,18 @@ fi
 #remove the file we no longer need
 rm links.txt
 
+#Get the DNS being used by Linux. This information is from: /etc/resolv.conf
+#awk help thanks to: https://stackoverflow.com/questions/48606867/how-to-print-the-next-word-after-a-found-pattern-with-grep-sed-and-awk
+DNS=$(awk '{for(i=1;i<=NF;i++)if($i=="nameserver")print $(i+1)}' /etc/resolv.conf)
+printf "/n/nDNS Servers: $DNS"
+
+#Get the Mac Address
 MAC=$(ifconfig eth0 | grep -Eo ..\(\:..\){5})
 printf "\n\nHardware Address: $MAC\n"
 printf "\n\nHardware Address: $MAC\n" >> $file
 
 #Check for open ports - outputs open ports, what's listening, and if programs are using it.
-echo Open Ports:
+printf "\n\nOpen Ports:"
 ports=$(netstat -atup)
-printf "\n\nYour ports are:\n $ports"
-printf "\n\nYour ports are:\n $ports" >> $file
+printf "\n\nYour ports are:\n$ports"
+printf "\n\nYour ports are:\n$ports" >> $file
