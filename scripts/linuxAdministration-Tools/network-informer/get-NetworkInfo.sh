@@ -15,7 +15,7 @@ echo This information was collected: $d
 
 #Setup Network File
 echo This file contains the network information for $computerName >> $file
-echo This infomration was collected: $d >> $file
+echo This information was collected: $d >> $file
 
 #This feature is really here just in case it's needed. Keeping this in the program will require sudo privliges.
 #If CentOS
