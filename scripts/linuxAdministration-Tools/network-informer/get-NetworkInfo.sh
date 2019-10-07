@@ -64,6 +64,21 @@ if [ lo_ip6=="::1" ]; then
 echo Interface lo is not connected and has the address 127.0.0.1, a loopback address.
 fi
 
+__='
+wlan0_ip4=$(/sbin/ip -o -4 addr list wlan0 | awk '{print $4}' | cut -d/ -f1)
+wlan0_ip6=$(/sbin/ip -o -6 addr list wlan0 | awk '{print $4}' | cut -d/ -f1)
+echo $wlan0_ip4
+echo $wlan0_ip6
+echo $wlan0_ip4 >> $file
+echo $wlan0_ip6 >> $file
+
+if [ wlan0_ip4=="127.0.0.1" ]; then
+echo Interface wlan0 is not connected and has the address 127.0.0.1, a loopback address.
+fi
+if [ wlan0_ip6=="::1" ]; then
+echo Interface wlan0 is not connected and has the address 127.0.0.1, a loopback address.
+fi'
+
 MAC=$(ifconfig eth0 | grep -Eo ..\(\:..\){5})
 echo "Hardware Address: $MAC"
 echo "Hardware Address: $MAC" >> $file
