@@ -43,12 +43,16 @@ echo $ip6
 echo $ip4 >> $file
 echo $ip6 >> $file
 
-if [ ip4=="127.0.0.1" ]; then
-echo Interface eth0 is not connected and has the address 127.0.0.1, a loopback address.
-fi
-if [ ip6=="::1" ]; then
-echo Interface eth0 is not connected and has the address 127.0.0.1, a loopback address.
-fi
+if [ "$ip4"=="127.0.0.1" ]; then
+  echo Interface eth0 is not connected and has the address 127.0.0.1, a loopback address.
+else
+  echo Interface eth0 has the IPv4 address $ip4
+  fi
+if [ "$ip6"=="::1" ]; then
+echo Interface eth0 IPv6 is not connected and has the address 127.0.0.1, a loopback address.
+else
+  echo Interface eth0 has the IPv6 address $ip6
+  fi
 
 lo_ip4=$(/sbin/ip -o -4 addr list lo | awk '{print $4}' | cut -d/ -f1)
 lo_ip6=$(/sbin/ip -o -6 addr list lo | awk '{print $4}' | cut -d/ -f1)
@@ -57,10 +61,10 @@ echo $lo_ip6
 echo $lo_ip4 >> $file
 echo $lo_ip6 >> $file
 
-if [ lo_ip4=="127.0.0.1" ]; then
+if [ "$lo_ip4"=="127.0.0.1" ]; then
 echo Interface lo is not connected and has the address 127.0.0.1, a loopback address.
 fi
-if [ lo_ip6=="::1" ]; then
+if [ "$lo_ip6"=="::1" ]; then
 echo Interface lo is not connected and has the address 127.0.0.1, a loopback address.
 fi
 
@@ -72,10 +76,10 @@ echo $wlan0_ip6
 echo $wlan0_ip4 >> $file
 echo $wlan0_ip6 >> $file
 
-if [ wlan0_ip4=="127.0.0.1" ]; then
+if [ "$wlan0_ip4"=="127.0.0.1" ]; then
 echo Interface wlan0 is not connected and has the address 127.0.0.1, a loopback address.
 fi
-if [ wlan0_ip6=="::1" ]; then
+if [ "$wlan0_ip6"=="::1" ]; then
 echo Interface wlan0 is not connected and has the address 127.0.0.1, a loopback address.
 fi'
 
@@ -87,3 +91,4 @@ echo "Hardware Address: $MAC" >> $file
 echo Open Ports:
 ports=$(netstat -atup)
 echo "Your ports are: $ports"
+echo "Your ports are: $ports" >> $file
