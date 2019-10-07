@@ -5,6 +5,11 @@ Write a script to dump network info (including ip, dns, open ports) to the comma
 
 Add to documentation, GitHub and portfolio
 
+<b>Purpose</b>
+
+This script displays a lot of networking information for your device. It lists: Your hostname, the date, your external IP, all your local addresses, including MAC address, your ports that are in use and by which program, and your server's DNS servers.
+This information is both displayed and saved in a file specified for future reference. 
+ 
 <b>Instructions</b>
 
 This script is created to give you a quick reference to your linux machine's networking configuration. 
