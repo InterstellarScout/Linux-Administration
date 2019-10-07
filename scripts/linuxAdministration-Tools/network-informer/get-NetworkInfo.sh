@@ -32,8 +32,8 @@ echo This infomration was collected: $d >> $file
 
 #Get External IP Address
 myip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
-printf "\n\nMy WAN/Public IP address: ${myip}"
-printf "\n\nMy WAN/Public IP address: ${myip}" >> $file
+printf "\n\nMy WAN/Public IP address: ${myip}\n"
+printf "\n\nMy WAN/Public IP address: ${myip}\n" >> $file
 
 #Get Internal IP Addresses
 #First, lets make the file that will contain our active interfaces:
