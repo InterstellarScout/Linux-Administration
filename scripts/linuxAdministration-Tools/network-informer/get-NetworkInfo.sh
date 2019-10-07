@@ -32,14 +32,14 @@ echo This infomration was collected: $d >> $file
 
 #Get External IP Address
 myip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
-echo "My WAN/Public IP address: ${myip}"
-echo "My WAN/Public IP address: ${myip}" >> $file
+printf "\n\nMy WAN/Public IP address: ${myip}"
+printf "\n\nMy WAN/Public IP address: ${myip}" >> $file
 
 #Get Internal IP Addresses
 ip4=$(/sbin/ip -o -4 addr list eth0 | awk '{print $4}' | cut -d/ -f1)
 ip6=$(/sbin/ip -o -6 addr list eth0 | awk '{print $4}' | cut -d/ -f1)
-echo $ip4
-echo $ip6
+printf "\n$ip4"
+printf "\n$ip6"
 printf "\n$ip4" >> $file
 printf "\n$ip6" >> $file
 
@@ -47,17 +47,17 @@ if [ "$ip4"=="127.0.0.1" ]; then
   echo Interface eth0 is not connected and has the address 127.0.0.1, a loopback address.
 else
   echo Interface eth0 has the IPv4 address $ip4
-  fi
+fi
 if [ "$ip6"=="::1" ]; then
-echo Interface eth0 IPv6 is not connected and has the address 127.0.0.1, a loopback address.
+  echo Interface eth0 IPv6 is not connected and has the address 127.0.0.1, a loopback address.
 else
   echo Interface eth0 has the IPv6 address $ip6
-  fi
+fi
 
 lo_ip4=$(/sbin/ip -o -4 addr list lo | awk '{print $4}' | cut -d/ -f1)
 lo_ip6=$(/sbin/ip -o -6 addr list lo | awk '{print $4}' | cut -d/ -f1)
-echo $lo_ip4
-echo $lo_ip6
+printf "\n$lo_ip4"
+printf "\n$lo_ip6"
 printf "\n$lo_ip4" >> $file
 printf "\n$lo_ip6" >> $file
 
@@ -65,12 +65,12 @@ if [ "$lo_ip4"=="127.0.0.1" ]; then
 echo Interface lo is not connected and has the address 127.0.0.1, a loopback address.
 else
   echo Interface lo has the IPv4 address $lo_ip4
-  fi
+fi
 if [ "$lo_ip6"=="::1" ]; then
 echo Interface lo is not connected and has the address 127.0.0.1, a loopback address.
 else
   echo Interface lo has the IPv6 address $ip6
-  fi
+fi
 
 __='
 wlan0_ip4=$(/sbin/ip -o -4 addr list wlan0 | awk '{print $4}' | cut -d/ -f1)
@@ -92,11 +92,11 @@ else
   fi'
 
 MAC=$(ifconfig eth0 | grep -Eo ..\(\:..\){5})
-echo "Hardware Address: $MAC"
+printf "\n\nHardware Address: $MAC"
 printf "\n\nHardware Address: $MAC" >> $file
 
 #Check for open ports - outputs open ports, what's listening, and if programs are using it.
 echo Open Ports:
 ports=$(netstat -atup)
-echo "Your ports are: $ports"
+printf "\n\nYour ports are:\n $ports"
 printf "\n\nYour ports are:\n $ports" >> $file
