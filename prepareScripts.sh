@@ -3,7 +3,7 @@
 #This one time run will neet to be run each update, but will get all scripts ready.
 
 #Main Scripts
-chmod 777 getUpDatedRepo.sh
+chmod 777 getUpdatedRepo.sh
 chmod 777 setupNewUserprofile.sh
 
 #General Use Scripts
