@@ -53,11 +53,13 @@ if grep -q "eth0" "links.txt"; then
     echo Interface eth0 is not connected and has the address 127.0.0.1, a loopback address.
   else
     echo Interface eth0 has the IPv4 address $ip4
+    echo Interface eth0 has the IPv4 address $ip4 >> $file
   fi
   if [ "$ip6" == "::1" ]; then
     echo Interface eth0 IPv6 is not connected and has the address ::1, a loopback address.
   else
     echo Your local interface, eth0, has the IPv6 address $ip6
+    echo Your local interface, eth0, has the IPv6 address $ip6 >> $file
   fi
 fi
 
@@ -74,11 +76,13 @@ if grep -q "lo" "links.txt"; then
   echo Local interface lo is not connected and has the address 127.0.0.1, a loopback address.
   else
     echo Your local interface, lo, has the IPv4 address $lo_ip4
+    echo Your local interface, lo, has the IPv4 address $lo_ip4 >> $file
   fi
   if [ "$lo_ip6" == "::1" ]; then
   echo Local interface lo is not connected and has the address ::1, a loopback address.
   else
     echo Your local interface, lo, has the IPv6 address $ip6
+    echo Your local interface, lo, has the IPv6 address $ip6 >> $file
   fi
 fi
 
@@ -96,11 +100,13 @@ if grep -q "wlan0" "links.txt"; then
   echo Interface wlan0 is not connected and has the address 127.0.0.1, a loopback address.
   else
     echo Interface wlan0 has the IPv6 address $wlan0_ip4
+    echo Interface wlan0 has the IPv6 address $wlan0_ip4 >> $file
     fi
   if [ $wlan0_ip6 == "::1" ]; then
   echo Interface wlan0 is not connected and has the address 127.0.0.1, a loopback address.
   else
     echo Your local interface, wlan0, has the IPv6 address $wlan0_ip6
+    echo Your local interface, wlan0, has the IPv6 address $wlan0_ip6 >> $file
     fi
 fi
 
