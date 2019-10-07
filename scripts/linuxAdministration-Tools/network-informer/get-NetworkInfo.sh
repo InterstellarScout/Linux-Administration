@@ -4,14 +4,14 @@
 file=networkinfo.txt
 
 #Get Date
-d=$(date +%Y-%m-%d)
+d=$(date +%m-%d-%Y)
 
 #Get Computer name
 computerName=$(hostname)
 
 #Display Information
 echo This file contains the network information for $computerName
-echo This infomration was collected: $d
+echo This information was collected: $d
 
 #Setup Network File
 echo This file contains the network information for $computerName >> $file
@@ -125,8 +125,8 @@ rm links.txt
 #Get the DNS being used by Linux. This information is from: /etc/resolv.conf
 #awk help thanks to: https://stackoverflow.com/questions/48606867/how-to-print-the-next-word-after-a-found-pattern-with-grep-sed-and-awk
 DNS=$(awk '{for(i=1;i<=NF;i++)if($i=="nameserver")print $(i+1)}' /etc/resolv.conf)
-printf "/n/nDNS Servers: $DNS"
-printf "/n/nDNS Servers: $DNS" >> $file
+printf "\n\nDNS Servers: $DNS"
+printf "\n\nDNS Servers: $DNS" >> $file
 
 #Get the Mac Address
 MAC=$(ifconfig eth0 | grep -Eo ..\(\:..\){5})
