@@ -43,12 +43,12 @@ printf "\nYour local IPv6 address on interface eth0 is $ip6\n"
 printf "\nYour local IPv4 address on interface eth0 is $ip4\n" >> $file
 printf "\nYour local IPv6 address on interface eth0 is $ip6\n" >> $file
 
-if [ $ip4 == "127.0.0.1" ]; then
+if [ "$ip4" == "127.0.0.1" ]; then
   echo Interface eth0 is not connected and has the address 127.0.0.1, a loopback address.
 else
   echo Interface eth0 has the IPv4 address $ip4
 fi
-if [ $ip6 == "::1" ]; then
+if [ "$ip6" == "::1" ]; then
   echo Interface eth0 IPv6 is not connected and has the address 127.0.0.1, a loopback address.
 else
   echo Interface eth0 has the IPv6 address $ip6
