@@ -80,9 +80,11 @@ fileOutput="$TargetDomain"'-Investigation-'"$d"'.txt'
 ###############Output File Setup######################
 ######################################################
 echo ------------------------------------------------------------ | tee -a $fileOutput
+chmod 777 $fileOutput #make the file avaiable to everyone. 
 echo ------------------Investigation Report---------------------- | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
 echo This report has been created on: $d | tee -a $fileOutput
+echo Interstellar Tech has assembeled this information. | tee -a $fileOutput
 echo The target systems are as follows: | tee -a $fileOutput
 echo Domain\(s\): $TargetDomain | tee -a $fileOutput
 for address in "${IPArray[@]}"
