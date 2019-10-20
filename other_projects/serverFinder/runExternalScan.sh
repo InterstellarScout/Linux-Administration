@@ -30,20 +30,20 @@ if [[ $TargetIpAddress =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]];
 	then
 	echo Thank you
 
-elif [[ $TargetIpAddress == none ]];
+elif [[ "$TargetIpAddress" == "none" ]] || [ "$TargetIpAddress" == "None" ] || [ "$TargetIpAddress" == "N" ] || [ "$TargetIpAddress" == "n" ];
 	then
 	echo What is the domain?
 	echo If there is none, type \"none\"
 	domainCheck=1
 	read TargetIpAddress
-	if [ "$TargetIpAddress" == "none" ] || [ "$TargetIpAddress" == "None" ] || [ "$TargetIpAddress" == "N" ] || [ "$TargetIpAddress" == "n" ];
+	if [ "$TargetDomain" == "none" ] || [ "$TargetDomain" == "None" ] || [ "$TargetDomain" == "N" ] || [ "$TargetDomain" == "n" ];
 		then
 		#No information is given if they reach this. End program.
 		echo I have nothing to investigate. Oh well. Thanks anyway.
 		exit 1
 	fi
 	mapfile -t IPArray < <(dig +short $TargetDomain)
-	if [ ${#IPArray[@]} -eq 0 ]; then
+	if [ ${#IPArray[@]} -eq 0 ]; then #If the array is empty, no IP Addresses were found
 		echo No IP Address was found from this domain.
 		echo Did you spell it right?
 	fi
@@ -54,7 +54,7 @@ else
 	exit 1
 fi
 
-###################Get IP Domain#######################
+###################Get Domain#######################
 if [ $domainCheck == 0 ];
   then
   echo What is the target Domain?
@@ -74,7 +74,9 @@ fi
 d=$(date +%m-%d-%Y)
 
 #File Title
-fileOutput="$TargetDomain"'-Investigation-'"$d"'.txt'
+#fileOutput="$TargetDomain"'-Investigation-'"$d"'.txt'
+#fileOutput=$TargetDomain'-Investigation-'$d'.txt'
+fileOutput={$TargetDomain}-Investigation-{$d}.txt
 
 ######################################################
 ###############Output File Setup######################
