@@ -35,8 +35,8 @@ elif [[ $TargetIpAddress == none ]];
 	echo What is the domain?
 	echo If there is none, type \"none\"
 	domainCheck=1
-	read TargetDomain
-	if [ "$TargetDomain" == "none" ] || [ "$TargetDomain" == "None" ];
+	read TargetIpAddress
+	if [ "$TargetIpAddress" == "none" ] || [ "$TargetIpAddress" == "None" ] || [ "$TargetIpAddress" == "N" ] || [ "$TargetIpAddress" == "n" ];
 		then
 		#No information is given if they reach this. End program.
 		echo I have nothing to investigate. Oh well. Thanks anyway.
@@ -60,7 +60,7 @@ if [ $domainCheck == 0 ];
   echo What is the target Domain?
   echo If there is none, type \"none\"
   read TargetDomain
-  if [ "$TargetDomain" == "none" ] || [ "$TargetDomain" == "None" ];
+  if [ "$TargetDomain" == "none" ] || [ "$TargetDomain" == "None" ] || [ "$TargetDomain" == "N" ] || [ "$TargetDomain" == "n" ];
 	  then
 	  #If we do not have a domain, we will use the
 	  TargetDomain=$TargetIpAddress
@@ -80,13 +80,14 @@ fileOutput="$TargetDomain"'-Investigation-'"$d"'.txt'
 ###############Output File Setup######################
 ######################################################
 echo ------------------------------------------------------------ | tee -a $fileOutput
-chmod 777 $fileOutput #make the file avaiable to everyone. 
+chmod 777 $fileOutput #make the file avaiable to everyone.
 echo ------------------Investigation Report---------------------- | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
 echo This report has been created on: $d | tee -a $fileOutput
 echo Interstellar Tech has assembeled this information. | tee -a $fileOutput
 echo The target systems are as follows: | tee -a $fileOutput
 echo Domain\(s\): $TargetDomain | tee -a $fileOutput
+echo According to the domain\'s DNS records, it is being hosted at: | tee -a $fileOutput
 for address in "${IPArray[@]}"
 do
 echo IP Address: $address | tee -a $fileOutput
@@ -100,38 +101,64 @@ echo ------------------------------------------------------------ | tee -a $file
 echo ---------------------Domain Scoping------------------------- | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
 echo | tee -a $fileOutput
+#Physical IP Location Lookup
+#curl https://ipvigilante.com/$address
+#{"status":"success","data":{"ipv4":"64.25.82.10","continent_name":"North America","country_name":"United States","subdivision_1_name":"Massachusetts","subdivision_2_name":null,"city_name":"Beverly","latitude":"42.56530","longitude":"-70.85780"}}
+echo Command: curl https://ipvigilante.com/$TargetIpAddress | tee -a $fileOutput
+echo Objective: Find where the ip\'s are given to physically. The server is likely being hosted in this area. Once compared with the domain\'s registrar, we may have an exact location. | tee -a $fileOutput
+echo Results: | tee -a $fileOutput
+for address in "${IPArray[@]}"
+do
+echo Checking $address
+curl https://ipvigilante.com/$address | tee -a tempFile
+grep -Po '"status":.*?[^\\]"' tempFile|awk -F"[:\"]" '{print $5}' | tee -a $fileOutput
+grep -Po '"country_name":.*?[^\\]"' tempFile|awk -F"[:\"]" '{print $5}' | tee -a $fileOutput
+grep -Po '"subdivision_1_name":.*?[^\\]"' tempFile|awk -F"[:\"]" '{print $5}' | tee -a $fileOutput
+grep -Po '"city_name":.*?[^\\]"' tempFile|awk -F"[:\"]" '{print $5}' | tee -a $fileOutput
+grep -Po '"latitude":.*?[^\\]"' tempFile|awk -F"[:\"]" '{print $5}' | tee -a $fileOutput
+grep -Po '"longitude":.*?[^\\]"' tempFile|awk -F"[:\"]" '{print $5}' | tee -a $fileOutput
+rm tempFile
+done
+
+echo | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
 echo | tee -a $fileOutput
+
 exit 1
+
 echo whois -H $TargetDomain | tee -a $fileOutput
 if [ $TargetIpAddress == $TargetDomain ]; #If the user did not supply a domain, skip this.
 then
 	echo Skipping Domain Lookup
 else
-	whois -H $TargetDomain | tee -a $fileOutput
+  echo whois -H $TargetDomain | tee -a $fileOutput
 	echo Objective: Scope out what information can be gathered by the domain\’s registrar. | tee -a $fileOutput
 	echo Results: | tee -a $fileOutput
+	whois -H $TargetDomain | tee -a $fileOutput
 fi
+
 echo | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
 echo | tee -a $fileOutput
+
 echo Command: whois -H $TargetIpAddress | tee -a $fileOutput
 echo Objective: Find out if there are any other IP Addresses given to the company in the IP block.  | tee -a $fileOutput
 echo Results: | tee -a $fileOutput
-
 for address in "${IPArray[@]}"
 do
 echo Checking $address
 echo whois -H $address | tee -a $fileOutput
 done
+
 echo | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
 echo | tee -a $fileOutput
+
 echo Command: dnsmap $TargetDomain | tee -a $fileOutput
 echo Objective: Attempt to locate any subdomains that may belong to the domain.  | tee -a $fileOutput
 echo Results:
-
 dnsmap $TargetDomain | tee -a $fileOutput
+
 echo | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
 echo | tee -a $fileOutput
