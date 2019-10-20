@@ -88,9 +88,10 @@ echo IP Address\(s\): $TargetIpAddress | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
 echo ---------------------Domain Scoping------------------------- | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
-exit 1
-
+echo | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
+echo | tee -a $fileOutput
+exit 1
 echo whois -H $TargetDomain | tee -a $fileOutput
 if [ $TargetIpAddress == $TargetDomain ]; #If the user did not supply a domain, skip this.
 then
@@ -100,29 +101,34 @@ else
 	echo Objective: Scope out what information can be gathered by the domain\’s registrar. | tee -a $fileOutput
 	echo Results: | tee -a $fileOutput
 fi
-
+echo | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
-
+echo | tee -a $fileOutput
 echo Command: whois -H $TargetIpAddress | tee -a $fileOutput
 echo Objective: Find out if there are any other IP Addresses given to the company in the IP block.  | tee -a $fileOutput
 echo Results: | tee -a $fileOutput
+
 for address in "${IPArray[@]}"
 do
 echo Checking $address
 echo whois -H $address | tee -a $fileOutput
 done
-
+echo | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
-
+echo | tee -a $fileOutput
 echo Command: dnsmap $TargetDomain | tee -a $fileOutput
 echo Objective: Attempt to locate any subdomains that may belong to the domain.  | tee -a $fileOutput
-echo Results: | tee -a $fileOutput
+echo Results:
 
+dnsmap $TargetDomain | tee -a $fileOutput
+echo | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
-
+echo | tee -a $fileOutput
 echo Command: dnsrecon -d $TargetDomain -g  | tee -a $fileOutput
 echo Objective: Check out domain zones and zone transfers. Discover any cached entries as well.  | tee -a $fileOutput
 echo Results: | tee -a $fileOutput
+
+dnsrecon -d $TargetDomain -g  | tee -a $fileOutput
 
 echo ------------------------------------------------------------ | tee -a $fileOutput
 
