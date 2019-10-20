@@ -74,7 +74,7 @@ fi
 d=$(date +%m-%d-%Y)
 
 #File Title
-fileOutput={$TargetDomain}Investigation-{$d}.txt
+fileOutput="$TargetDomain"'Investigation-'"$d"'.txt'
 
 ######################################################
 ###############Output File Setup######################
@@ -82,11 +82,12 @@ fileOutput={$TargetDomain}Investigation-{$d}.txt
 echo ------------------------------------------------------------ | tee -a $fileOutput
 echo ------------------Investigation Report---------------------- | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
-echo This report has been created on: {$d} | tee -a $fileOutput
+echo This report has been created on: $d | tee -a $fileOutput
 echo The target systems are as follows: | tee -a $fileOutput
 echo Domain\(s\): $TargetDomain | tee -a $fileOutput
 echo IP Address\(s\): $TargetIpAddress | tee -a $fileOutput
-
+echo | tee -a $fileOutput
+echo | tee -a $fileOutput
 ######################################################
 ##################Run the Program#####################
 ######################################################
