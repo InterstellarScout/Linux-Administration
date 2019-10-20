@@ -18,5 +18,9 @@ chmod 777 scripts/linuxAdministration-Tools/network-informer/get-NetworkInfo.sh
 #Rotating MOTD
 chmod 777 scripts/rotating-motd/deploy.sh
 
+#Other Projects
+chmod 777 other_projects/serverFinder/runExternalScan.sh
+chmod 777 other_projects/serverFinder/scanIPBlock.sh
+
 #Specific Use Scripts
 chmod 777 scripts/specific-use/webServer/startStopWebServer.sh

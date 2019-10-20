@@ -9,6 +9,7 @@
 #nmap
 #whois
 #dnsmap
+domainCheck=0 #This variable is needed to jump the domain question if needed.
 
 #Must run as root
 if [ "$(whoami)" != "root" ]; then
@@ -33,6 +34,7 @@ elif [[ $TargetIpAddress == none ]];
 	then
 	echo What is the domain?
 	echo If there is none, type \"none\"
+	domainCheck=1
 	read TargetDomain
 	if [ "$TargetDomain" == "none" ] || [ "$TargetDomain" == "None" ];
 		then
@@ -53,14 +55,17 @@ else
 fi
 
 ###################Get IP Domain#######################
-echo What is the target Domain?
-echo If there is none, type \"none\"
-read TargetDomain
-if [ "$TargetDomain" == "none" ] || [ "$TargetDomain" == "None" ];
-	then
-	#If we do not have a domain, we will use the
-	TargetDomain=$TargetIpAddress
+if [ $domainCheck == 0 ];
+  then
+  echo What is the target Domain?
+  echo If there is none, type \"none\"
+  read TargetDomain
+  if [ "$TargetDomain" == "none" ] || [ "$TargetDomain" == "None" ];
+	  then
+	  #If we do not have a domain, we will use the
+	  TargetDomain=$TargetIpAddress
 	fi
+fi
 
 ######################################################
 ##################Variable Setup######################
