@@ -9,7 +9,10 @@ function Rules {
   #Variable answer is used to choose which rule to enable
   answer=$1
   action=$2
-  if [[ "$answer" == 1 ]];
+  if [[ "$answer" == "q" ]] || [[ "$answer" == "Q" ]] || [[ "$answer" == "quit" ]] || [[ "$answer" == "Quit" ]];
+  then
+    exit 1
+  elif [[ "$answer" == 1 ]];
   then
     sudo iptables -L -nv --line-number
   elif [[ "$answer" == 2 ]];
@@ -162,6 +165,28 @@ exit 0" | sudo tee /etc/rc.local
     sudo sed -i.bak -e '/firewall/!d' /etc/rc.local
   fi
   }
+function EDisable {
+  echo "Would you like to enable to disable rules? (e/d)"
+  echo "Type 1 to view current IP Tables"
+  read answer
+  if [[ "$answer" == "e" ]] || [[ "$answer" == "E" ]] || [[ "$answer" == "enable" ]] || [[ "$answer" == "Enable" ]];
+  then
+    action=A
+  elif [[ "$answer" == "d" ]] || [[ "$answer" == "D" ]] || [[ "$answer" == "disable" ]] || [[ "$answer" == "Disable" ]];
+  then
+    action=D
+  elif [[ "$answer" == 1 ]];
+  then
+    sudo iptables -L -nv --line-number
+    EDisable
+  elif [[ "$answer" == "q" ]] || [[ "$answer" == "Q" ]] || [[ "$answer" == "quit" ]] || [[ "$answer" == "Quit" ]];
+  then
+    exit 1
+  else
+    echo You entered something wrong.
+    exit 1
+  fi
+}
 
 #########################################################################
 ############################Start Script###############################
@@ -178,24 +203,14 @@ fi
 #########################################################################
 echo "Welcome to Firewall Hardener"
 echo "This program contains basic hardening rules to add to your IPTables."
-echo "Would you like to enable to disable rules? (e/d)"
-echo "Type 1 to view current IP Tables"
-read answer
-if [[ "$answer" == "e" ]] || [[ "$answer" == "E" ]] || [[ "$answer" == "enable" ]] || [[ "$answer" == "Enable" ]];
-then
-  action=A
-elif [[ "$answer" == "d" ]] || [[ "$answer" == "D" ]] || [[ "$answer" == "disable" ]] || [[ "$answer" == "Disable" ]];
-then
-  action=D
-elif [[ "$answer" == 1 ]];
-then
-  sudo iptables -L -nv --line-number
-else
-  echo You entered something wrong.
-  exit 1
-fi
+echo "At any point, type Q/q to quit"
+while :
+do
+  #Ask if the user wants to enable to disable the rules
+  EDisable
 
-echo " __________________________________________________
+#Move on to the main
+  echo " __________________________________________________
 |_____________________Options______________________|
 | 1) Show IP Tables                                |
 | 2) Disable Pings - Prevent Pings                 |
@@ -223,7 +238,8 @@ Enter the number of the option number that you would like to use."
 #########################################################################
 ##################################Main###################################
 #########################################################################
-read answer
-Rules $answer $action
+  read answer
+  Rules $answer $action
+done
 
 
