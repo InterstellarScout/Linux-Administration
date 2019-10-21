@@ -46,27 +46,27 @@ echo " __________________________________________________
 Enter the number of the option you would like to use."
 read answer
 
-if [[ $answer == 1 ]];
+if [[ "$answer" == 1 ]];
 then
   sudo iptables -L -nv --line-number
-elif [[ $answer == 2 ]];
+elif [[ "$answer" == 2 ]];
 then
   ### Block Pings ###
   sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
   sudo iptables -A OUTPUT -p icmp --icmp-type echo-reply -j DROP
-elif [[ $answer == 3 ]];
+elif [[ "$answer" == 3 ]];
 then
   ### 3: Drop invalid packets ###
   sudo /sbin/iptables -t mangle -A PREROUTING -m conntrack --ctstate INVALID -j DROP
-elif [[ $answer == 4 ]];
+elif [[ "$answer" == 4 ]];
 then
   ### 4: Drop TCP packets that are new and are not SYN ###
   sudo /sbin/iptables -t mangle -A PREROUTING -p tcp ! --syn -m conntrack --ctstate NEW -j DROP
-elif [[ $answer == 5 ]];
+elif [[ "$answer" == 5 ]];
 then
   ### 5: Drop SYN packets with suspicious MSS value ###
   sudo /sbin/iptables -t mangle -A PREROUTING -p tcp -m conntrack --ctstate NEW -m tcpmss ! --mss 536:65535 -j DROP
-elif [[ $answer == 6 ]];
+elif [[ "$answer" == 6 ]];
 then
   ### 6: Block packets with bogus TCP flags ###
   sudo /sbin/iptables -t mangle -A PREROUTING -p tcp --tcp-flags FIN,SYN,RST,PSH,ACK,URG NONE -j DROP
@@ -82,7 +82,7 @@ then
   sudo /sbin/iptables -t mangle -A PREROUTING -p tcp --tcp-flags ALL FIN,PSH,URG -j DROP
   sudo /sbin/iptables -t mangle -A PREROUTING -p tcp --tcp-flags ALL SYN,FIN,PSH,URG -j DROP
   sudo /sbin/iptables -t mangle -A PREROUTING -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP
-elif [[ $answer == 7 ]];
+elif [[ "$answer" == 7 ]];
 then
   ### 7: Block spoofed packets ###
   sudo /sbin/iptables -t mangle -A PREROUTING -s 224.0.0.0/3 -j DROP
@@ -94,62 +94,62 @@ then
   sudo /sbin/iptables -t mangle -A PREROUTING -s 0.0.0.0/8 -j DROP
   sudo /sbin/iptables -t mangle -A PREROUTING -s 240.0.0.0/5 -j DROP
   sudo /sbin/iptables -t mangle -A PREROUTING -s 127.0.0.0/8 ! -i lo -j DROP
-elif [[ $answer == 8 ]];
+elif [[ "$answer" == 8 ]];
 then
   ### 8: Drop ICMP (you usually don't need this protocol) ###
   sudo /sbin/iptables -t mangle -A PREROUTING -p icmp -j DROP
-elif [[ $answer == 9 ]];
+elif [[ "$answer" == 9 ]];
 then
   ### 9: Drop fragments in all chains ###
   sudo /sbin/iptables -t mangle -A PREROUTING -f -j DROP
-elif [[ $answer == 10 ]];
+elif [[ "$answer" == 10 ]];
 then
   ### 10: Limit connections per source IP ###
   sudo /sbin/iptables -A INPUT -p tcp -m connlimit --connlimit-above 111 -j REJECT --reject-with tcp-reset
-elif [[ $answer == 11 ]];
+elif [[ "$answer" == 11 ]];
 then
   ### 11: Limit RST packets ###
   sudo /sbin/iptables -A INPUT -p tcp --tcp-flags RST RST -m limit --limit 2/s --limit-burst 2 -j ACCEPT
   sudo /sbin/iptables -A INPUT -p tcp --tcp-flags RST RST -j DROP
-elif [[ $answer == 12 ]];
+elif [[ "$answer" == 12 ]];
 then
   ### 12: Limit new TCP connections per second per source IP ###
   sudo /sbin/iptables -A INPUT -p tcp -m conntrack --ctstate NEW -m limit --limit 60/s --limit-burst 20 -j ACCEPT
   sudo /sbin/iptables -A INPUT -p tcp -m conntrack --ctstate NEW -j DROP
-elif [[ $answer == 13 ]];
+elif [[ "$answer" == 13 ]];
 then
   ### 13: Use SYNPROXY on all ports (disables connection limiting rule) ###
   sudo iptables -t raw -A PREROUTING -p tcp -m tcp --syn -j CT --notrack
   sudo iptables -A INPUT -p tcp -m tcp -m conntrack --ctstate INVALID,UNTRACKED -j SYNPROXY --sack-perm --timestamp --wscale 7 --mss 1460
   sudo iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
-elif [[ $answer == 14 ]];
+elif [[ "$answer" == 14 ]];
 then
   ### 14: SSH brute-force protection ###
   sudo /sbin/iptables -A INPUT -p tcp --dport ssh -m conntrack --ctstate NEW -m recent --set
   sudo /sbin/iptables -A INPUT -p tcp --dport ssh -m conntrack --ctstate NEW -m recent --update --seconds 60 --hitcount 10 -j DROP
-elif [[ $answer == 15 ]];
+elif [[ "$answer" == 15 ]];
 then
   ### 15: Protection against port scanning ###
   sudo /sbin/iptables -N port-scanning
   sudo /sbin/iptables -A port-scanning -p tcp --tcp-flags SYN,ACK,FIN,RST RST -m limit --limit 1/s --limit-burst 2 -j RETURN
   sudo /sbin/iptables -A port-scanning -j DROP
-elif [[ $answer == 16 ]];
+elif [[ "$answer" == 16 ]];
 then
   ### 16: Enable All Rules ###
-elif [[ $answer == 17 ]];
+elif [[ "$answer" == 17 ]];
 then
   ### 17: Remove all Rules ###
   iptables -F
-elif [[ $answer == 18 ]];
+elif [[ "$answer" == 18 ]];
 then
   ### Save all rules ###
   [ ! -d "/firewall" ] && mkdir firewall
   sudo iptables-save > /firewall/dsl.fw
-elif [[ $answer == 19 ]];
+elif [[ "$answer" == 19 ]];
 then
   [ ! -d "/firewall" ] && echo "Firewall file does not exist"
   iptables-restore < /firewall/dsl.fw
-elif [[ $answer == 20 ]];
+elif [[ "$answer" == 20 ]];
 then
   if test -f "/etc/rc.local"; then
     echo "/etc/rc.local exist"
@@ -180,7 +180,7 @@ exit 0" | sudo tee /etc/rc.local
     sudo sed -i '$i/sbin/iptables-restore < /firewall/dsl.fw' /etc/rc.local
   fi
   ### Set all rules to reload upon reboot ###
-elif [[ $answer == 21 ]];
+elif [[ "$answer" == 21 ]];
 then
   ### Disable reboot restore rules ###
   sudo sed -i.bak -e '/firewall/!d' /etc/rc.local
