@@ -178,7 +178,8 @@ fi
 #########################################################################
 echo "Welcome to Firewall Hardener"
 echo "This program contains basic hardening rules to add to your IPTables."
-echo "Would you like to enable to disable rules? \(e/d\)"
+echo "Would you like to enable to disable rules? (e/d)"
+echo "Type 1 to view current IP Tables"
 read answer
 if [[ "$answer" == "e" ]] || [[ "$answer" == "E" ]] || [[ "$answer" == "enable" ]] || [[ "$answer" == "Enable" ]];
 then
@@ -186,34 +187,38 @@ then
 elif [[ "$answer" == "d" ]] || [[ "$answer" == "D" ]] || [[ "$answer" == "disable" ]] || [[ "$answer" == "Disable" ]];
 then
   action=D
+elif [[ "$answer" == 1 ]];
+then
+  sudo iptables -L -nv --line-number
 else
   echo You entered something wrong.
   exit 1
+fi
 
 echo " __________________________________________________
 |_____________________Options______________________|
-| 1\) Show IP Tables                               |
-| 2\) Disable Pings - Prevent Pings                |
-| 3\) Drop invalid packets                         |
-| 4\) Drop TCP packets that are new and are not SYN|
-| 5\) Drop SYN packets with suspicious MSS value   |
-| 6\) Block packets with bogus TCP flags           |
-| 7\) Block spoofed packets                        |
-| 8\) Drop ICMP \(rare protocol\)                  |
-| 9\) Drop fragments in all chains                 |
-| 10\) Limit connections per source IP             |
-| 11\) Limit RST packets                           |
-| 12\) Limit new TCP connections/second/source IP  |
-| 13\) Use SYNPROXY on all ports                   |
-| 14\) SSH brute-force protection                  |
-| 15\) Protection against port scanning            |
-| 16\) Add All Rules                               |
-| 17\) Remove All Rules                            |
-| 18\) Save All Rules                              |
-| 19\) Set all rules to reload upon reboot.        |
-| 20\) Disable reboot reload.                      |
+| 1) Show IP Tables                                |
+| 2) Disable Pings - Prevent Pings                 |
+| 3) Drop invalid packets                          |
+| 4) Drop TCP packets that are new and are not SYN |
+| 5) Drop SYN packets with suspicious MSS value    |
+| 6) Block packets with bogus TCP flags            |
+| 7) Block spoofed packets                         |
+| 8) Drop ICMP (rare protocol)                     |
+| 9) Drop fragments in all chains                  |
+| 10) Limit connections per source IP              |
+| 11) Limit RST packets                            |
+| 12) Limit new TCP connections/second/source IP   |
+| 13) Use SYNPROXY on all ports                    |
+| 14) SSH brute-force protection                   |
+| 15) Protection against port scanning             |
+| 16) Add All Rules                                |
+| 17) Remove All Rules                             |
+| 18) Save All Rules                               |
+| 19) Set all rules to reload upon reboot.         |
+| 20) Disable reboot reload.                       |
 |__________________________________________________|
-Enter the number of the option you would like to use."
+Enter the number of the option number that you would like to use."
 
 #########################################################################
 ##################################Main###################################
