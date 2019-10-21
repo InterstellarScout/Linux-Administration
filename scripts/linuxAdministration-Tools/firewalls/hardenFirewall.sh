@@ -20,18 +20,62 @@ function Rules {
     ### Block Pings ###
     sudo iptables -$action INPUT -p icmp --icmp-type echo-request -j DROP
     sudo iptables -$action OUTPUT -p icmp --icmp-type echo-reply -j DROP
+    if [[ "$action" == "A" ]]
+    then
+      echo Pings are now blocked.
+    elif [[ "$action" == "D" ]]
+    then
+      echo Pings are now allowed.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
   elif [[ "$answer" == 3 ]];
   then
     ### 3: Drop invalid packets ###
-    sudo /sbin/iptables -t mangle -$action PREROUTING -m conntrack --ctstate INVALID -j DROP
+    sudo /sbin/iptables -t mangle -A PREROUTING -m conntrack --ctstate INVALID -j DROP
+    if [[ "$action" == "A" ]]
+    then
+      echo Invalid packets are now blocked.
+    elif [[ "$action" == "D" ]]
+    then
+      echo Invalid are now allowed.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
   elif [[ "$answer" == 4 ]];
   then
     ### 4: Drop TCP packets that are new and are not SYN ###
     sudo /sbin/iptables -t mangle -$action PREROUTING -p tcp ! --syn -m conntrack --ctstate NEW -j DROP
+    if [[ "$action" == "A" ]]
+    then
+      echo TCP Packets that are not and are not SYN are now blocked.
+    elif [[ "$action" == "D" ]]
+    then
+      echo TCP Packets that are not and are not SYN are now allowed.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
   elif [[ "$answer" == 5 ]];
   then
     ### 5: Drop SYN packets with suspicious MSS value ###
     sudo /sbin/iptables -t mangle -$action PREROUTING -p tcp -m conntrack --ctstate NEW -m tcpmss ! --mss 536:65535 -j DROP
+    if [[ "$action" == "A" ]]
+    then
+      echo SYN packets with suspicious MSS value are now blocked.
+    elif [[ "$action" == "D" ]]
+    then
+      echo SYN packets with suspicious MSS value are now allowed.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
   elif [[ "$answer" == 6 ]];
   then
     ### 6: Block packets with bogus TCP flags ###
@@ -48,6 +92,17 @@ function Rules {
     sudo /sbin/iptables -t mangle -$action PREROUTING -p tcp --tcp-flags ALL FIN,PSH,URG -j DROP
     sudo /sbin/iptables -t mangle -$action PREROUTING -p tcp --tcp-flags ALL SYN,FIN,PSH,URG -j DROP
     sudo /sbin/iptables -t mangle -$action PREROUTING -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP
+    if [[ "$action" == "A" ]]
+    then
+      echo Packets with bogus TCP flags are now blocked.
+    elif [[ "$action" == "D" ]]
+    then
+      echo SYN packets with suspicious MSS value are now be allowed.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
   elif [[ "$answer" == 7 ]];
   then
     ### 7: Block spoofed packets ###
@@ -60,45 +115,144 @@ function Rules {
     sudo /sbin/iptables -t mangle -$action PREROUTING -s 0.0.0.0/8 -j DROP
     sudo /sbin/iptables -t mangle -$action PREROUTING -s 240.0.0.0/5 -j DROP
     sudo /sbin/iptables -t mangle -$action PREROUTING -s 127.0.0.0/8 ! -i lo -j DROP
+    if [[ "$action" == "A" ]]
+    then
+      echo Spoofed packets are now blocked.
+    elif [[ "$action" == "D" ]]
+    then
+      echo Spoofed packets are now be allowed.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
   elif [[ "$answer" == 8 ]];
   then
     ### 8: Drop ICMP (you usually don't need this protocol) ###
     sudo /sbin/iptables -t mangle -$action PREROUTING -p icmp -j DROP
+    if [[ "$action" == "A" ]]
+    then
+      echo ICMP is now blocked.
+    elif [[ "$action" == "D" ]]
+    then
+      echo ICMP is now allowed.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
   elif [[ "$answer" == 9 ]];
   then
     ### 9: Drop fragments in all chains ###
     sudo /sbin/iptables -t mangle -$action PREROUTING -f -j DROP
+    if [[ "$action" == "A" ]]
+    then
+      echo Drop fragments in all chains are now blocked.
+    elif [[ "$action" == "D" ]]
+    then
+      echo Drop fragments in all chains are now be allowed.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
   elif [[ "$answer" == 10 ]];
   then
     ### 10: Limit connections per source IP ###
     sudo /sbin/iptables -$action INPUT -p tcp -m connlimit --connlimit-above 111 -j REJECT --reject-with tcp-reset
+    if [[ "$action" == "A" ]]
+    then
+      echo Connections per source IP are now limited.
+    elif [[ "$action" == "D" ]]
+    then
+      echo Connections per source IP are now unlimited.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
   elif [[ "$answer" == 11 ]];
   then
     ### 11: Limit RST packets ###
     sudo /sbin/iptables -$action INPUT -p tcp --tcp-flags RST RST -m limit --limit 2/s --limit-burst 2 -j ACCEPT
     sudo /sbin/iptables -$action INPUT -p tcp --tcp-flags RST RST -j DROP
+    if [[ "$action" == "A" ]]
+    then
+      echo RST Packets are now limited.
+    elif [[ "$action" == "D" ]]
+    then
+      echo RST Packets are now unlimited.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
   elif [[ "$answer" == 12 ]];
   then
     ### 12: Limit new TCP connections per second per source IP ###
     sudo /sbin/iptables -$action INPUT -p tcp -m conntrack --ctstate NEW -m limit --limit 60/s --limit-burst 20 -j ACCEPT
     sudo /sbin/iptables -$action INPUT -p tcp -m conntrack --ctstate NEW -j DROP
+    if [[ "$action" == "A" ]]
+    then
+      echo New TCP connections per second per source IP is now limited.
+    elif [[ "$action" == "D" ]]
+    then
+      echo New TCP connections per second per source IP is now unlimited.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
   elif [[ "$answer" == 13 ]];
   then
     ### 13: Use SYNPROXY on all ports (disables connection limiting rule) ###
     sudo iptables -t raw -A PREROUTING -p tcp -m tcp --syn -j CT --notrack
     sudo iptables -$action INPUT -p tcp -m tcp -m conntrack --ctstate INVALID,UNTRACKED -j SYNPROXY --sack-perm --timestamp --wscale 7 --mss 1460
     sudo iptables -$action INPUT -m conntrack --ctstate INVALID -j DROP
+    if [[ "$action" == "A" ]]
+    then
+      echo SYNPROXY on all ports is now enabeled.
+    elif [[ "$action" == "D" ]]
+    then
+      echo SYNPROXY on all ports is now disabeled.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
   elif [[ "$answer" == 14 ]];
   then
     ### 14: SSH brute-force protection ###
     sudo /sbin/iptables -$action INPUT -p tcp --dport ssh -m conntrack --ctstate NEW -m recent --set
     sudo /sbin/iptables -$action INPUT -p tcp --dport ssh -m conntrack --ctstate NEW -m recent --update --seconds 60 --hitcount 10 -j DROP
+    if [[ "$action" == "A" ]]
+    then
+      echo SSH brute-force protection is now enabeled.
+    elif [[ "$action" == "D" ]]
+    then
+      echo SSH brute-force protection is now disabeled.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
   elif [[ "$answer" == 15 ]];
   then
     ### 15: Protection against port scanning ###
     sudo /sbin/iptables -N port-scanning
     sudo /sbin/iptables -$action port-scanning -p tcp --tcp-flags SYN,ACK,FIN,RST RST -m limit --limit 1/s --limit-burst 2 -j RETURN
     sudo /sbin/iptables -$action port-scanning -j DROP
+    if [[ "$action" == "A" ]]
+    then
+      echo Protection against port scanning is now enabeled.
+    elif [[ "$action" == "D" ]]
+    then
+      echo Protection against port scanning is now disabeled.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
   elif [[ "$answer" == 16 ]];
   then
     Rules 2 $action
@@ -115,15 +269,18 @@ function Rules {
     Rules 13 $action
     Rules 14 $action
     Rules 15 $action
+
   elif [[ "$answer" == 17 ]];
   then
     ### 17: Remove all Rules ###
     iptables -F
+
   elif [[ "$answer" == 18 ]];
   then
     ### Save all rules ###
     [ ! -d "/firewall" ] && mkdir firewall
     sudo iptables-save > /firewall/dsl.fw
+
   elif [[ "$answer" == 19 ]];
   then
     [ ! -d "/firewall" ] && echo "Firewall file does not exist"
@@ -159,13 +316,17 @@ exit 0" | sudo tee /etc/rc.local
       sudo sed -i '$i/sbin/iptables-restore < /firewall/dsl.fw' /etc/rc.local
     fi
     ### Set all rules to reload upon reboot ###
+
   elif [[ "$answer" == 21 ]];
   then
     ### Disable reboot restore rules ###
     sudo sed -i.bak -e '/firewall/!d' /etc/rc.local
   fi
   }
+  
 function EDisable {
+  echo ""
+  echo ""
   echo "Would you like to enable to disable rules? (e/d)"
   echo "Type 1 to view current IP Tables"
   read answer
@@ -178,6 +339,8 @@ function EDisable {
   elif [[ "$answer" == 1 ]];
   then
     sudo iptables -L -nv --line-number
+    echo ""
+    echo ""
     EDisable
   elif [[ "$answer" == "q" ]] || [[ "$answer" == "Q" ]] || [[ "$answer" == "quit" ]] || [[ "$answer" == "Quit" ]];
   then
