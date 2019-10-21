@@ -28,7 +28,8 @@ read TargetIpAddress
 #Check id the IP is valid
 if [[ $TargetIpAddress =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]];
 	then
-	echo Thank you
+	  IPArray=$TargetIpAddress
+	  echo Thank you
 
 elif [[ "$TargetIpAddress" == "none" ]] || [ "$TargetIpAddress" == "None" ] || [ "$TargetIpAddress" == "N" ] || [ "$TargetIpAddress" == "n" ];
 	then
