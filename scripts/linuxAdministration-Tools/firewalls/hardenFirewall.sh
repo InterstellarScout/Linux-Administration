@@ -20,30 +20,30 @@ fi
 #########################################################################
 echo Welcome to Firewall Hardener
 echo This program contains basic hardening rules to add to your IPTables.
-echo  __________________________________________________
-echo |_____________________Options______________________|
-echo | 1\) Show IP Tables                               |
-echo | 2\) Disable Pings - Prevent Pings                |
-echo | 3\) Drop invalid packets                         |
-echo | 4\) Drop TCP packets that are new and are not SYN|
-echo | 5\) Drop SYN packets with suspicious MSS value   |
-echo | 6\) Block packets with bogus TCP flags           |
-echo | 7\) Block spoofed packets                        |
-echo | 8\) Drop ICMP \(rare protocol\)                  |
-echo | 9\) Drop fragments in all chains                 |
-echo | 10\) Limit connections per source IP             |
-echo | 11\) Limit RST packets                           |
-echo | 12\) Limit new TCP connections/second/source IP  |
-echo | 13\) Use SYNPROXY on all ports                   |
-echo | 14\) SSH brute-force protection                  |
-echo | 15\) Protection against port scanning            |
-echo | 16\) Add All Rules                               |
-echo | 17\) Remove All Rules                            |
-echo | 18\) Save All Rules                              |
-echo | 19\) Set all rules to reload upon reboot.        |
-echo | 20\) Disable reboot reload.                      |
-echo |__________________________________________________|
-echo Enter the number of the option you would like to use.
+echo " __________________________________________________
+|_____________________Options______________________|
+| 1\) Show IP Tables                               |
+| 2\) Disable Pings - Prevent Pings                |
+| 3\) Drop invalid packets                         |
+| 4\) Drop TCP packets that are new and are not SYN|
+| 5\) Drop SYN packets with suspicious MSS value   |
+| 6\) Block packets with bogus TCP flags           |
+| 7\) Block spoofed packets                        |
+| 8\) Drop ICMP \(rare protocol\)                  |
+| 9\) Drop fragments in all chains                 |
+| 10\) Limit connections per source IP             |
+| 11\) Limit RST packets                           |
+| 12\) Limit new TCP connections/second/source IP  |
+| 13\) Use SYNPROXY on all ports                   |
+| 14\) SSH brute-force protection                  |
+| 15\) Protection against port scanning            |
+| 16\) Add All Rules                               |
+| 17\) Remove All Rules                            |
+| 18\) Save All Rules                              |
+| 19\) Set all rules to reload upon reboot.        |
+| 20\) Disable reboot reload.                      |
+|__________________________________________________|
+Enter the number of the option you would like to use."
 read answer
 
 if [[ $answer == 1 ]];
