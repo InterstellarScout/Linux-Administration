@@ -21,6 +21,8 @@ chmod 777 scripts/rotating-motd/deploy.sh
 #Other Projects
 chmod 777 other_projects/serverFinder/runExternalScan.sh
 chmod 777 other_projects/serverFinder/scanIPBlock.sh
+chmod 777 other_projects/serverFinder/miniExamples/bashArrays.sh
+chmod 777 other_projects/serverFinder/miniExamples/ipVerification.sh
 
 #Specific Use Scripts
 chmod 777 scripts/specific-use/webServer/startStopWebServer.sh
