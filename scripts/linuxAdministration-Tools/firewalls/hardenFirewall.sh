@@ -21,7 +21,7 @@ fi
 echo Welcome to Firewall Hardener
 echo This program contains basic hardening rules to add to your IPTables.
 echo  __________________________________________________
-echo |___________________Options________________________|
+echo |_____________________Options______________________|
 echo | 1\) Show IP Tables                               |
 echo | 2\) Disable Pings - Prevent Pings                |
 echo | 3\) Drop invalid packets                         |
@@ -38,6 +38,10 @@ echo | 13\) Use SYNPROXY on all ports                   |
 echo | 14\) SSH brute-force protection                  |
 echo | 15\) Protection against port scanning            |
 echo | 16\) Add All Rules                               |
+echo | 17\) Remove All Rules                            |
+echo | 18\) Save All Rules                              |
+echo | 19\) Set all rules to reload upon reboot.        |
+echo | 20\) Disable reboot reload.                      |
 echo |__________________________________________________|
 echo Enter the number of the option you would like to use.
 read answer
@@ -132,5 +136,52 @@ then
 elif [[ $answer == 16 ]];
 then
   ### 16: Enable All Rules ###
+elif [[ $answer == 17 ]];
+then
+  ### 17: Remove all Rules ###
+  iptables -F
+elif [[ $answer == 18 ]];
+then
+  ### Save all rules ###
+  [ ! -d "/firewall" ] && mkdir firewall
+  sudo iptables-save > /firewall/dsl.fw
+elif [[ $answer == 19 ]];
+then
+  [ ! -d "/firewall" ] && echo "Firewall file does not exist"
+  iptables-restore < /firewall/dsl.fw
+elif [[ $answer == 20 ]];
+then
+  if test -f "/etc/rc.local"; then
+    echo "/etc/rc.local exist"
+    sudo sed -i '$i/sbin/iptables-restore < /firewall/dsl.fw' /etc/rc.local
+  else
+    echo "The file does not exist..."
+    #Create the file that we will be adding the startup command to
+    sudo touch /etc/rc.local
+    sudo echo "
+#!/bin/sh -e
 
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will \"exit 0\" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+#<Add terminal commands here without sude>
+
+exit 0" | sudo tee /etc/rc.local
+    sudo chmod +x /etc/rc.local
+    sudo systemctl enable rc-local
+    sudo sed -i '$i/sbin/iptables-restore < /firewall/dsl.fw' /etc/rc.local
+  fi
+  ### Set all rules to reload upon reboot ###
+elif [[ $answer == 21 ]];
+then
+  ### Disable reboot restore rules ###
+  sudo sed -i.bak -e '/firewall/!d' /etc/rc.local
 fi
