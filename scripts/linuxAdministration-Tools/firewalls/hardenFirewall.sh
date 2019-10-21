@@ -18,8 +18,8 @@ fi
 #########################################################################
 ############################Startup Tables###############################
 #########################################################################
-echo Welcome to Firewall Hardener
-echo This program contains basic hardening rules to add to your IPTables.
+echo "Welcome to Firewall Hardener"
+echo "This program contains basic hardening rules to add to your IPTables."
 echo " __________________________________________________
 |_____________________Options______________________|
 | 1\) Show IP Tables                               |
