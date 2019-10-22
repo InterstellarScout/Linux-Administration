@@ -269,6 +269,7 @@ function Rules {
     Rules 13 $action
     Rules 14 $action
     Rules 15 $action
+    Rules 22 $action
 
   elif [[ "$answer" == 17 ]];
   then
@@ -283,10 +284,13 @@ function Rules {
 
   elif [[ "$answer" == 19 ]];
   then
+    ### Restore saved rules ###
     [ ! -d "/firewall" ] && echo "Firewall file does not exist"
     iptables-restore < /firewall/dsl.fw
+
   elif [[ "$answer" == 20 ]];
   then
+    ### Set all rules to reload upon reboot ###
     if test -f "/etc/rc.local"; then
       echo "/etc/rc.local exist"
       sudo sed -i '$i/sbin/iptables-restore < /firewall/dsl.fw' /etc/rc.local
@@ -315,15 +319,163 @@ exit 0" | sudo tee /etc/rc.local
       sudo systemctl enable rc-local
       sudo sed -i '$i/sbin/iptables-restore < /firewall/dsl.fw' /etc/rc.local
     fi
-    ### Set all rules to reload upon reboot ###
 
   elif [[ "$answer" == 21 ]];
   then
     ### Disable reboot restore rules ###
     sudo sed -i.bak -e '/firewall/!d' /etc/rc.local
+
+  elif [[ "$answer" == 22 ]];
+  then
+    ### Allow SSH Connections from anywhere ###
+    sudo iptables -$action INPUT -p tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+    sudo iptables -$action OUTPUT -p tcp --sport 22 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+    if [[ "$action" == "A" ]]
+    then
+      echo Connections to SSH is now enabeled.
+    elif [[ "$action" == "D" ]]
+    then
+      echo Connections to SSH is now disabeled.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
+  elif [[ "$answer" == 23 ]];
+  then
+    ### Allow basic webserver configuration ###
+    #HTTP and HTTPS
+    sudo iptables -$action INPUT -p tcp -m multiport --dports 80,443 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+    sudo iptables -$action OUTPUT -p tcp -m multiport --dports 80,443 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
+    if [[ "$action" == "A" ]]
+    then
+      echo HTTP and HTTPS is now enabeled.
+    elif [[ "$action" == "D" ]]
+    then
+      echo HTTP and HTTPS is now disabeled.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
+  elif [[ "$answer" == 24 ]];
+  then
+    ### Allow basic mySQL configuration ###
+    #Open port 3306
+    sudo iptables -$action INPUT -p tcp --dport 3306 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+    sudo iptables -$action OUTPUT -p tcp --sport 3306 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
+    if [[ "$action" == "A" ]]
+    then
+      echo mySQL is now enabeled.
+    elif [[ "$action" == "D" ]]
+    then
+      echo mySQL is now disabeled.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
+  elif [[ "$answer" == 25 ]];
+  then
+    ### Allow basic telnet configuration ###
+    #Open port 3306
+    sudo iptables -$action INPUT -p tcp --dport 23 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+    sudo iptables -$action OUTPUT -p tcp --sport 23 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
+    if [[ "$action" == "A" ]]
+    then
+      echo Telnet is now enabeled, but you should really consider not doing this. Ever.
+    elif [[ "$action" == "D" ]]
+    then
+      echo Telnet is now disabeled. Thank you.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
+  elif [[ "$answer" == 26 ]];
+  then
+    ### Allow basic email configuration ###
+    sudo iptables -$action INPUT -p tcp -m multiport --dports 25,587,465,110,995 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+    sudo iptables -$action OUTPUT -p tcp -m multiport --dports 25,587,465,110,995 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
+    if [[ "$action" == "A" ]]
+    then
+      echo Email server ports are now enabeled.
+    elif [[ "$action" == "D" ]]
+    then
+      echo Email server ports are now disabeled.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
+  elif [[ "$answer" == 27 ]];
+  then
+    ### 27: Allow/Block IP Address. ###
+    echo "What IP Address do you want to block or unblock?"
+    read IPAddress
+    if [[ $IPAddress =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]];
+    then
+      sudo iptables -$action INPUT -s $IPAddress -j DROP
+    fi
+
+    if [[ "$action" == "A" ]]
+    then
+      echo IP Address $IPAddress has been blocked.
+    elif [[ "$action" == "D" ]]
+    then
+      echo IP Address $IPAddress has been unblocked.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
+  elif [[ "$answer" == 28 ]];
+  then
+    ### 28 :Allow/Block Ports ###
+    echo What port would you like to block or unblock?
+    read port
+    sudo iptables -$action INPUT -p tcp --dport $port -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+    sudo iptables -$action OUTPUT -p tcp --sport $port -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
+    if [[ "$action" == "A" ]]
+    then
+      echo Port $port has been closed.
+    elif [[ "$action" == "D" ]]
+    then
+      echo Port $port has been opened.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
+
+  elif [[ "$answer" == 29 ]];
+  then
+    ### 29: Allow/Block MAC Address Access. ###
+    if [[ "$action" == "A" ]]; then echo "What MAC Address would you like to block?" fi
+    if [[ "$action" == "D" ]]; then echo "What MAC Address would you like to unblock?" fi
+    echo "Remember, a MAC address looks like this 00:00:00:00:00:00"
+    read MACAddress
+    sudo /sbin/iptables -$action INPUT -m mac --mac-source $MACAddress -j DROP
+
+    if [[ "$action" == "A" ]]
+    then
+      echo MAC Address $MACAddress has now been blocked.
+    elif [[ "$action" == "D" ]]
+    then
+      echo MAC Address $MACAddress has now been unblocked.
+    else
+      echo Something went wrong with your action variable.
+      exit 1
+    fi
   fi
   }
-  
+
+
+
 function EDisable {
   echo ""
   echo ""
@@ -390,11 +542,20 @@ do
 | 13) Use SYNPROXY on all ports                    |
 | 14) SSH brute-force protection                   |
 | 15) Protection against port scanning             |
-| 16) Add All Rules                                |
+| 16) Add All Above Rules                          |
 | 17) Remove All Rules                             |
 | 18) Save All Rules                               |
-| 19) Set all rules to reload upon reboot.         |
-| 20) Disable reboot reload.                       |
+| 19) Restore saved rules                          |
+| 20) Set all rules to reload upon reboot.         |
+| 21) Disable reboot restore rules                 |
+| 22) Allow/Block SSH Connections.                 |
+| 23) Allow/Block Basic Webserver configurations.  |
+| 24) Allow/Block mySQL configurations.            |
+| 25) Allow/Block Telnet configurations.           |
+| 26) Allow/Block Email configurations.            |
+| 27) Allow/Block IP Address.                      |
+| 28) Allow/Block Ports                            |
+| 29) Allow/Block MAC Address Access.              |
 |__________________________________________________|
 Enter the number of the option number that you would like to use."
 
