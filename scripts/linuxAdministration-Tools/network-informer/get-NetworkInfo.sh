@@ -35,6 +35,14 @@ echo This information was collected: $d | tee -a $file
 #  sudo apt-get install net-tools
 #Fi
 
+echo "
+__   __                 _   _      _                      _
+\ \ / /                | \ | |    | |                    | |
+ \ V /___  _   _ _ __  |  \| | ___| |___      _____  _ __| | _____ _ __
+  \ // _ \| | | | '__| | .   |/ _ \ __\ \ /\ / / _ \| '__| |/ / _ \ '__|
+  | | (_) | |_| | |    | |\  |  __/ |_ \ V  V / (_) | |  |   <  __/ |
+  \_/\___/ \__,_|_|    \_| \_/\___|\__| \_/\_/ \___/|_|  |_|\_\___|_|
+                                                                       "
 #Get External IP Address
 myip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
 printf "\n\nMy WAN/Public IP address: ${myip}\n" | tee -a $file

@@ -16,8 +16,8 @@ chmod 777 scripts/linuxAdministration-Tools/create-users/makeUser.sh
 chmod 777 scripts/linuxAdministration-Tools/network-informer/get-NetworkInfo.sh
 
 #Firewalls
-chmod 777 scripts/linuxAdministration-Tools/firewalls/backupFirewall.sh
-chmod 777 scripts/linuxAdministration-Tools/firewalls/hardenFirewall.sh
+chmod 777 scripts/linuxAdministration-Tools/firewalls/backupFirewall/backupFirewall.sh
+chmod 777 scripts/linuxAdministration-Tools/firewalls/hardenFirewall/hardenFirewall.sh
 
 #Rotating MOTD
 chmod 777 scripts/rotating-motd/deploy.sh
