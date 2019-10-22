@@ -12,6 +12,8 @@ function Rules {
   if [[ "$answer" == "q" ]] || [[ "$answer" == "Q" ]] || [[ "$answer" == "quit" ]] || [[ "$answer" == "Quit" ]];
   then
     exit 1
+  fi
+
   elif [[ "$answer" == 1 ]];
   then
     sudo iptables -L -nv --line-number
@@ -455,8 +457,9 @@ exit 0" | sudo tee /etc/rc.local
   elif [[ "$answer" == 29 ]];
   then
     ### 29: Allow/Block MAC Address Access. ###
-    if [[ "$action" == "A" ]]; then echo "What MAC Address would you like to block?" fi
-    if [[ "$action" == "D" ]]; then echo "What MAC Address would you like to unblock?" fi
+    echo "What MAC Address would you like to block or unblock?"
+    #if [[ "$action" == "A" ]]; then echo "What MAC Address would you like to block?" fi
+    #if [[ "$action" == "D" ]]; then echo "What MAC Address would you like to unblock?" fi
     echo "Remember, a MAC address looks like this 00:00:00:00:00:00"
     read MACAddress
     sudo /sbin/iptables -$action INPUT -m mac --mac-source $MACAddress -j DROP
@@ -472,9 +475,7 @@ exit 0" | sudo tee /etc/rc.local
       exit 1
     fi
   fi
-  }
-
-
+}
 
 function EDisable {
   echo ""
