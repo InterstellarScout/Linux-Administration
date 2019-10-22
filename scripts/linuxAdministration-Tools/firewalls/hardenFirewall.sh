@@ -282,7 +282,7 @@ function Rules {
   elif [[ "$answer" == 18 ]];
   then
     ### Save all rules ###
-    [ ! -d "/firewall" ] && mkdir firewall
+    [ ! -d "/firewall" ] && sudo mkdir /firewall
     sudo iptables-save > /firewall/dsl.fw
 
   elif [[ "$answer" == 19 ]];
