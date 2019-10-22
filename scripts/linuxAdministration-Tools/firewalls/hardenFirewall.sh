@@ -12,11 +12,11 @@ function Rules {
   if [[ "$answer" == "q" ]] || [[ "$answer" == "Q" ]] || [[ "$answer" == "quit" ]] || [[ "$answer" == "Quit" ]];
   then
     exit 1
-  fi
 
   elif [[ "$answer" == 1 ]];
   then
     sudo iptables -L -nv --line-number
+    
   elif [[ "$answer" == 2 ]];
   then
     ### Block Pings ###
