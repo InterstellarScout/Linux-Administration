@@ -28,7 +28,7 @@ then
       echo No error message was recieved.
       exit 0
 else
-      echo "The error is \$1"
+      echo "The error is $1"
 fi
 
 #Errors are handed out by error codes. New errors need to be generated below.
@@ -64,5 +64,5 @@ subject="Server $host Critical Alert" #AlertLevel1 - Critical
 fi
 
 #Send the email
-sendEmail subject body
+sendEmail $subject $body
 
