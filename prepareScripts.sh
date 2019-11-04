@@ -4,6 +4,7 @@
 
 #Main Scripts
 chmod 777 getUpdatedRepo.sh
+chmod 777 getUpdatedRepoIP.sh
 chmod 777 setupNewUserprofile.sh
 
 #General Use Scripts

@@ -43,7 +43,7 @@ then
   Everything is okay. You're doing a good job. Keep up the good work.
 
   Thank you,
-  ${host}
+  `hostname`
   "
   alert=4
 fi
@@ -51,7 +51,7 @@ fi
 #The following defines the subject
 if [ "alert" == "4" ];
 then
-subject="Server ${host} Information" #AlertLevel4 - Informational
+subject="Server-${host}-Information" #AlertLevel4 - Informational
 elif [ "alert" == "3" ];
 then
 subject="Server ${host} Warning" #AlertLevel3 - Warning
@@ -70,5 +70,4 @@ fi
   #mail -s 'Message Subject' -a From:Admin\<admin@interstellarlibrary.net\> das097@gmail.com <<< 'testing message'
   echo mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail} ${body}
   #`mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail} <<< ${body}`
-  echo ${body} | mail -s ${subject} das097@gmail.com
-  echo ${body} | mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail}
+  echo ${body} | mail -s ${subject} -a "From:${fromName}\<${fromEmail}\>" ${toEmail}
