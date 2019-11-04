@@ -24,4 +24,4 @@ body="Server `hostname` Alert.
 subject="Server-${host}-Information"
 
 echo mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail} ${body}
-$mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail} <<< ${body}
+mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail} <<< ${body}

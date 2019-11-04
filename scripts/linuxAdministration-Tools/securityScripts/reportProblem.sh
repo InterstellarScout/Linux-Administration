@@ -1,6 +1,6 @@
 #!/bin/sh
 #This program is used to email a warning to the admin email.
-function sendEmail {
+sendEmail() {
   #$1 Subject
   #$2 Body
   echo Sending email
@@ -15,7 +15,7 @@ fromName=Admin
 #To change the from email address, change the below line:
 fromEmail=admin@interstellarlibrary.net
 #The following defines what warning will be sent to the admin.
-errMessage=$1
+errMessage="$1"
 #The following is the hostname of this computer to be used in the subject
 host=`hostname`
 
@@ -28,13 +28,13 @@ then
       echo No error message was recieved.
       exit 0
 else
-      echo "The error is $1"
+      echo "The error is $errMessage"
 fi
 
 #Errors are handed out by error codes. New errors need to be generated below.
-if [ "$errMessage" == "0" ]; #Error Test - if 1 is recieved, an email will be sent saying everything is all set.
+if [ "$errMessage" = "0" ]; #Error Test - if 1 is recieved, an email will be sent saying everything is all set.
 then
-  body="Server `hostname` Alert.
+  body="Server ${host} Alert.
   Hello Moderator,
   You are recieving this message because your email address has been added to the alerting dashboard. To be removes, please contact your administrator.
 
@@ -43,24 +43,24 @@ then
   Everything is okay. You're doing a good job. Keep up the good work.
 
   Thank you,
-  `hostname`
+  ${host}
   "
   alert=4
 fi
 
 #The following defines the subject
-if [ "alert" == "4" ];
+if [ "$alert" = "4" ];
 then
 subject="Server-${host}-Information" #AlertLevel4 - Informational
-elif [ "alert" == "3" ];
+elif [ "$alert" = "3" ];
 then
-subject="Server ${host} Warning" #AlertLevel3 - Warning
-elif [ "alert" == "2" ];
+subject="Server-${host}-Warning" #AlertLevel3 - Warning
+elif [ "$alert" = "2" ];
 then
-subject="Server ${host} Alert" #AlertLevel2 - Alert
-elif [ "alert" == "1" ];
+subject="Server-${host}-Alert" #AlertLevel2 - Alert
+elif [ "$alert" = "1" ];
 then
-subject="Server ${host} Critical Alert" #AlertLevel1 - Critical
+subject="Server-${host}-Critical-Alert" #AlertLevel1 - Critical
 fi
 
 #Send the email
@@ -69,5 +69,5 @@ fi
   echo Sending email
   #mail -s 'Message Subject' -a From:Admin\<admin@interstellarlibrary.net\> email@email.com <<< 'testing message'
   echo mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail} ${body}
-  $mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail} <<< ${body}
+  mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail} <<< ${body}
   #echo ${body} | mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail}
