@@ -5,7 +5,7 @@ function sendEmail {
   #$2 Body
   echo Sending email
   #mail -s 'Message Subject' -a From:Admin\<admin@interstellarlibrary.net\> das097@gmail.com <<< 'testing message'
-  mail -s ${1} -a From:${fromName}\<${fromEmail}\> ${toEmail} <<< ${2}
+  `mail -s ${1} -a From:${fromName}\<${fromEmail}\> ${toEmail} <<< ${2}`
 }
 
 #To change the admin email, change the below line:
@@ -34,8 +34,8 @@ fi
 #Errors are handed out by error codes. New errors need to be generated below.
 if [ "$errMessage" == "0" ]; #Error Test - if 1 is recieved, an email will be sent saying everything is all set.
 then
-  body="Server ${host} Alert.
-  Hello Moderator,
+  body="Server ${host} Alert."
+  echo "Hello Moderator,
   You are recieving this message because your email address has been added to the alerting dashboard. To be removes, please contact your administrator.
 
   Error Message:
@@ -64,5 +64,5 @@ subject="Server ${host} Critical Alert" #AlertLevel1 - Critical
 fi
 
 #Send the email
-sendEmail $subject "This is an error"
+sendEmail $subject $body
 
