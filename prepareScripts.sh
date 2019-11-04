@@ -19,6 +19,9 @@ chmod 777 scripts/linuxAdministration-Tools/network-informer/get-NetworkInfo.sh
 chmod 777 scripts/linuxAdministration-Tools/firewalls/backupFirewall/backupFirewall.sh
 chmod 777 scripts/linuxAdministration-Tools/firewalls/hardenFirewall/hardenFirewall.sh
 
+#Security
+chmod 777 scripts/linuxAdministration-Tools/securityScripts/reportProblem.sh
+
 #Rotating MOTD
 chmod 777 scripts/rotating-motd/deploy.sh
 
