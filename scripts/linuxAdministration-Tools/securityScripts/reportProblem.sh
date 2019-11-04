@@ -5,7 +5,7 @@ function sendEmail {
   #$2 Body
   echo Sending email
   #mail -s 'Message Subject' -a From:Admin\<admin@interstellarlibrary.net\> das097@gmail.com <<< 'testing message'
-  `mail -s ${1} -a From:${fromName}\<${fromEmail}\> ${toEmail} <<< ${2}`
+  #`mail -s ${1} -a From:${fromName}\<${fromEmail}\> ${toEmail} <<< ${2}`
 }
 
 #To change the admin email, change the below line:
@@ -70,4 +70,4 @@ fi
   #mail -s 'Message Subject' -a From:Admin\<admin@interstellarlibrary.net\> das097@gmail.com <<< 'testing message'
   echo mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail} ${body}
   #`mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail} <<< ${body}`
-  echo ${body} | mail -s ${subject} -a "From:${fromName}\<${fromEmail}\>" ${toEmail}
+  echo ${body} | mail -s ${subject} -a "From:${fromName}<${fromEmail}>" ${toEmail}
