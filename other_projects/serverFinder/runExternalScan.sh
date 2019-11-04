@@ -82,6 +82,7 @@ fileOutput={$TargetDomain}-Investigation-{$d}.txt
 ######################################################
 ###############Output File Setup######################
 ######################################################
+
 echo ------------------------------------------------------------ | tee -a $fileOutput
 chmod 777 $fileOutput #make the file avaiable to everyone.
 echo ------------------Investigation Report---------------------- | tee -a $fileOutput
@@ -97,9 +98,11 @@ echo IP Address: $address | tee -a $fileOutput
 done
 echo | tee -a $fileOutput
 echo | tee -a $fileOutput
+
 ######################################################
 ##################Run the Program#####################
 ######################################################
+
 echo ------------------------------------------------------------ | tee -a $fileOutput
 echo ---------------------Domain Scoping------------------------- | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
@@ -250,7 +253,7 @@ echo Command: nmap -sC -p{port},{port},{port} -T4 $TargetIpAddress | tee -a $fil
 echo Objective: Take a deeper look at open ports. | tee -a $fileOutput
 echo Result: | tee -a $fileOutput
 for address in "${IPArray[@]}"
-do
+  do
   #For each address:
 done
 
