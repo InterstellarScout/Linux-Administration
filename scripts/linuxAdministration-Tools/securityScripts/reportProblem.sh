@@ -21,12 +21,12 @@ appendLogs() {
   FILE=`pwd`/security.log
   if [ test -f "$FILE" ];
   then
-    echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${$2} ${3} ${4}" >> `pwd`/security.log
+    echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${2} ${3} ${4}" >> $FILE
   else
-    touch /home/security.log
-    echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${$2} ${3} ${4}" >> `pwd`/security.log
+    touch $FILE
+    echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${2} ${3} ${4}" >> $FILE
   fi
-  #echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${$2} ${3} ${4}" >> /security.log
+  #echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${2} ${3} ${4}" >> /security.log
 }
 
 #To change the admin email, change the below line:
