@@ -1,6 +1,9 @@
 #!/bin/sh
 #This program is used to email a warning to the admin email.
 #usage bash reportProblem.sh {errorCode}
+#Alerts 1 and 2 send emails where all of them add to the log.
+#Log Outline
+#01-01-0101 2400 (Date) Critical-ALert(subject) Tester Variable(origin) Error Message: 0(errorBody) Everything is okay. You're doing a good job. Keep up the good work.(errorInfo)
 
 ######################################################################################
 ##################################    Functions    ###################################
@@ -99,28 +102,38 @@ body=${mainHeader}${errorBody}${errorInfo}${mainFooter}
 #The following defines the subject
 if [ "$alert" = "4" ];
 then
-subject="Server-${host}-Information" #AlertLevel4 - Informational
-elif [ "$alert" = "3" ];
-then
-subject="Server-${host}-Warning" #AlertLevel3 - Warning
-elif [ "$alert" = "2" ];
-then
-subject="Server-${host}-Alert" #AlertLevel2 - Alert
-elif [ "$alert" = "1" ];
-then
-subject="Server-${host}-Critical-Alert" #AlertLevel1 - Critical
-fi
-
-######################################################################################
-##############################    Run Functions    ###################################
-######################################################################################
-
-#Send the email
-  sendEmail $subject $body
-
-#Append the Log
+  #AlertLevel4 - Informational
+  subject="Server-${host}-Information"
+  #Append the Log
   #appendLogs $subject $origin $errorbody $errorInfo
   appendLogs $subject $origin $errorBody $errorInfo
 
-  #Log Outline
-  #01-01-0101 2400 (Date) Critical-ALert(subject) Tester Variable(origin) Error Message: 0(errorBody) Everything is okay. You're doing a good job. Keep up the good work.(errorInfo)
+elif [ "$alert" = "3" ];
+then
+  #AlertLevel3 - Warning
+  subject="Server-${host}-Warning"
+  #Append the Log
+  #appendLogs $subject $origin $errorbody $errorInfo
+  appendLogs $subject $origin $errorBody $errorInfo
+
+elif [ "$alert" = "2" ];
+then
+  #AlertLevel2 - Alert
+  subject="Server-${host}-Alert"
+  #Send an email
+  sendEmail $subject $body
+  #Append the Log
+  #appendLogs $subject $origin $errorbody $errorInfo
+  appendLogs $subject $origin $errorBody $errorInfo
+
+elif [ "$alert" = "1" ];
+then
+  #AlertLevel1 - Critical
+  subject="Server-${host}-Critical-Alert"
+  #Send the email
+  sendEmail $subject $body
+  #Append the Log
+  #appendLogs $subject $origin $errorbody $errorInfo
+  appendLogs $subject $origin $errorBody $errorInfo
+
+fi
