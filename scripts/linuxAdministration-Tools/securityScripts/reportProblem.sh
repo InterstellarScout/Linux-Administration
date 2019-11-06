@@ -1,5 +1,7 @@
 #!/bin/sh
 #This program is used to email a warning to the admin email.
+#usage bash reportProblem.sh {errorCode}
+
 sendEmail() {
   #$1 Subject
   #$2 Body
@@ -10,9 +12,21 @@ sendEmail() {
 
 appendLogs() {
   #$1 Subject
-  #$2 Body
+  #$2 Origin
+  #$3 errorBody
+  #$4 errorInfo
+  #01-01-0101 2400 (Date) Critical-ALert(subject) Tester Variable(origin) Error Message: 0(errorbody) Everything is okay. You're doing a good job. Keep up the good work.(errorInfo)
   echo Writing Log
-  echo date '+%d/%m/%Y %H:%M:%S' ${subject}
+  FILE=/security.log
+  if [ test -f "$FILE" ];
+  then
+    echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${$2} ${3} ${4}" >> /security.log
+  else
+    touch /security.log
+    echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${$2} ${3} ${4}" >> /security.log
+  fi
+
+  echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${$2} ${3} ${4}" >> /security.log
 }
 
 #To change the admin email, change the below line:
@@ -31,7 +45,8 @@ Hello Moderator,
 You are recieving this message because your email address has been added to the alerting dashboard. To be removes, please contact your administrator.
 `date '+%d/%m/%Y %H:%M:%S'`
 "
-mainFooter="Thank you,
+mainFooter="
+Thank you,
 ${host}"
 
 #The following variable is specified to later choose what alert level will be used for each error.
@@ -61,10 +76,8 @@ then
   #progVar=$2
 elif [ "$errMessage" = "1" ]; #Change detected on passwd file
 then
-  errorBody="Error Message: ${1}
-  "
-  errorInfo="Alert: A change has been detected on the passwd file. A user may have been created. Authorized?
-  "
+  errorBody="Error Message: ${1}"
+  errorInfo="Alert: A change has been detected on the passwd file. A user may have been created. Authorized?"
   #Required Variables for each program that will be using this.
   alert=2
   origin="Passwd Alert"
@@ -89,9 +102,10 @@ fi
 
 #Send the email
   sendEmail $subject $body
-  appendLogs $subject $body
-  #echo Sending email
-  #mail -s 'Message Subject' -a From:Admin\<admin@interstellarlibrary.net\> email@email.com <<< 'testing message'
-  #echo mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail} ${body}
-  #mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail} <<< ${body}
-  #echo ${body} | mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail}
+
+#Append the Log
+  #appendLogs $subject $origin $errorbody $errorInfo
+  appendLogs $subject $origin $errorBody $errorInfo
+
+  #Log Outline
+  #01-01-0101 2400 (Date) Critical-ALert(subject) Tester Variable(origin) Error Message: 0(errorbody) Everything is okay. You're doing a good job. Keep up the good work.(errorInfo)
