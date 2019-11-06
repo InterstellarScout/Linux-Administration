@@ -2,6 +2,9 @@
 #This program is used to email a warning to the admin email.
 #usage bash reportProblem.sh {errorCode}
 
+######################################################################################
+##################################    Functions    ###################################
+######################################################################################
 sendEmail() {
   #$1 Subject
   #$2 Body
@@ -11,24 +14,28 @@ sendEmail() {
 }
 
 appendLogs() {
-  #$1 Subject
-  #$2 Origin
+  #$1 subject
+  #$2 origin
   #$3 errorBody
   #$4 errorInfo
   #01-01-0101 2400 (Date) Critical-ALert(subject) Tester Variable(origin) Error Message: 0(errorbody) Everything is okay. You're doing a good job. Keep up the good work.(errorInfo)
   echo Writing Log
   #This log is stored in the folder in which this it run.
   FILE=`pwd`/security.log
-  if [ test -f "$FILE" ];
+  if [ -f "$FILE" ];
   then
-    echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${2} ${3} ${4}" >> $FILE
+    #echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${2} ${3} ${4}" >> $FILE
+    echo "`date '+%d/%m/%Y %H:%M:%S'` ${subject} ${origin} ${errorBody} ${errorInfo}" >> $FILE
   else
     touch $FILE
-    echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${2} ${3} ${4}" >> $FILE
+    #echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${2} ${3} ${4}" >> $FILE
+    echo "`date '+%d/%m/%Y %H:%M:%S'` ${subject} ${origin} ${errorBody} ${errorInfo}" >> $FILE
   fi
-  #echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${2} ${3} ${4}" >> /security.log
 }
 
+######################################################################################
+##############################    Variable Setup    ##################################
+######################################################################################
 #To change the admin email, change the below line:
 toEmail=das097@gmail.com
 #To change the from user, change the below line:
@@ -52,6 +59,9 @@ ${host}"
 #The following variable is specified to later choose what alert level will be used for each error.
 alert=0
 
+######################################################################################
+####################################    Main    ######################################
+######################################################################################
 #If the variable is empty, the program will end - nothing to do.
 if [ -z "$1" ]
 then
@@ -60,20 +70,20 @@ then
 else
       echo "The error is $errMessage"
 fi
-#############################################################################
-#Errors are handed out by error codes. New errors need to be generated below.
-#############################################################################
+
+##############################################################################
+#Errors are handed out by error codes. New errors need to be generated below.#
+##############################################################################
 if [ "$errMessage" = "0" ]; #Error Test - if 1 is recieved, an email will be sent saying everything is all set.
 then
-  errorBody="Error Message: ${1}
-  "
-  errorInfo="Everything is okay. You're doing a good job. Keep up the good work.
-  "
+  errorBody="Error Message: ${1}"
+  errorInfo="Everything is okay. You're doing a good job. Keep up the good work."
   #Required Variables for each program that will be using this.
   alert=4
-  origin="Tester Variable"
+  origin="Test Variable"
   #Use optional secondary if neccessary
   #progVar=$2
+
 elif [ "$errMessage" = "1" ]; #Change detected on passwd file
 then
   errorBody="Error Message: ${1}"
@@ -81,6 +91,7 @@ then
   #Required Variables for each program that will be using this.
   alert=2
   origin="Passwd Alert"
+
 fi
 
 body=${mainHeader}${errorBody}${errorInfo}${mainFooter}
@@ -100,6 +111,10 @@ then
 subject="Server-${host}-Critical-Alert" #AlertLevel1 - Critical
 fi
 
+######################################################################################
+##############################    Run Functions    ###################################
+######################################################################################
+
 #Send the email
   sendEmail $subject $body
 
@@ -108,4 +123,4 @@ fi
   appendLogs $subject $origin $errorBody $errorInfo
 
   #Log Outline
-  #01-01-0101 2400 (Date) Critical-ALert(subject) Tester Variable(origin) Error Message: 0(errorbody) Everything is okay. You're doing a good job. Keep up the good work.(errorInfo)
+  #01-01-0101 2400 (Date) Critical-ALert(subject) Tester Variable(origin) Error Message: 0(errorBody) Everything is okay. You're doing a good job. Keep up the good work.(errorInfo)
