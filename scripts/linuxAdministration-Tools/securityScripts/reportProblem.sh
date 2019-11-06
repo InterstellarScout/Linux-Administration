@@ -50,10 +50,10 @@ fi
 #############################################################################
 if [ "$errMessage" = "0" ]; #Error Test - if 1 is recieved, an email will be sent saying everything is all set.
 then
-  errorBody="Error Message:
-${1}
-Everything is okay. You're doing a good job. Keep up the good work.
-${mainFooter}"
+  errorBody="Error Message: ${1}
+  "
+  errorInfo="Everything is okay. You're doing a good job. Keep up the good work.
+  "
   #Required Variables for each program that will be using this.
   alert=4
   origin="Tester Variable"
@@ -61,17 +61,16 @@ ${mainFooter}"
   #progVar=$2
 elif [ "$errMessage" = "1" ]; #Change detected on passwd file
 then
-  errorBody="${mainHeader}
-Error Message:
-${1}
-Alert: A change has been detected on the passwd file. A user may have been created. Authorized?
-${mainFooter}"
+  errorBody="Error Message: ${1}
+  "
+  errorInfo="Alert: A change has been detected on the passwd file. A user may have been created. Authorized?
+  "
   #Required Variables for each program that will be using this.
   alert=2
   origin="Passwd Alert"
 fi
 
-body=${mainHeader}${errorBody}${mainFooter}
+body=${mainHeader}${errorBody}${errorInfo}${mainFooter}
 
 #The following defines the subject
 if [ "$alert" = "4" ];
@@ -90,7 +89,7 @@ fi
 
 #Send the email
   sendEmail $subject $body
-
+  appendLogs $subject $body
   #echo Sending email
   #mail -s 'Message Subject' -a From:Admin\<admin@interstellarlibrary.net\> email@email.com <<< 'testing message'
   #echo mail -s ${subject} -a From:${fromName}\<${fromEmail}\> ${toEmail} ${body}
