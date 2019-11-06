@@ -17,16 +17,16 @@ appendLogs() {
   #$4 errorInfo
   #01-01-0101 2400 (Date) Critical-ALert(subject) Tester Variable(origin) Error Message: 0(errorbody) Everything is okay. You're doing a good job. Keep up the good work.(errorInfo)
   echo Writing Log
-  FILE=/security.log
+  #This log is stored in the folder in which this it run.
+  FILE=`pwd`/security.log
   if [ test -f "$FILE" ];
   then
-    echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${$2} ${3} ${4}" >> /security.log
+    echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${$2} ${3} ${4}" >> `pwd`/security.log
   else
-    touch /security.log
-    echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${$2} ${3} ${4}" >> /security.log
+    touch /home/security.log
+    echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${$2} ${3} ${4}" >> `pwd`/security.log
   fi
-
-  echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${$2} ${3} ${4}" >> /security.log
+  #echo "`date '+%d/%m/%Y %H:%M:%S'` ${1} ${$2} ${3} ${4}" >> /security.log
 }
 
 #To change the admin email, change the below line:
