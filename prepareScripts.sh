@@ -26,13 +26,15 @@ chmod 777 scripts/linuxAdministration-Tools/securityScripts/reportProblem.sh
 #Rotating MOTD
 chmod 777 scripts/rotating-motd/deploy.sh
 
-#Other Projects
-chmod 777 other_projects/serverFinder/runExternalScan.sh
-chmod 777 other_projects/serverFinder/scanIPBlock.sh
-chmod 777 other_projects/serverFinder/runDomainScan.sh
-chmod 777 other_projects/serverFinder/miniExamples/bashArrays.sh
-chmod 777 other_projects/serverFinder/miniExamples/ipVerification.sh
+#Other Projects/Server Investigator
+chmod 777 other_projects/serverInvestigator/ipBlockInvestigator.sh
+chmod 777 other_projects/serverInvestigator/serverInvestigator.sh
+chmod 777 other_projects/serverInvestigator/miniExamples/bashArrays.sh
+chmod 777 other_projects/serverInvestigator/miniExamples/ipVerification.sh
+chmod 777 other_projects/serverInvestigator/miniExamples/domainValidation.sh
 
+#Other Projects/Domain Investigator
+chmod 777 other_projects/domainInvestigator/domainInvestigator.sh
 
 #Specific Use Scripts
 chmod 777 scripts/specific-use/webServer/startStopWebServer.sh
