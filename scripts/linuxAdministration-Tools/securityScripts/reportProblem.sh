@@ -68,7 +68,7 @@ alert=0
 #If the variable is empty, the program will end - nothing to do.
 if [ -z "$1" ]
 then
-      echo No error message was recieved.
+      echo "Usage bash reportProblem.sh {errorCode}"
       exit 0
 else
       echo "The error is $errMessage"

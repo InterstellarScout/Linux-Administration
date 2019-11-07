@@ -18,6 +18,12 @@ if [ "$(whoami)" != "root" ]; then
         exit 1
 fi
 
+#If the variable is empty, the program will end - nothing to do.
+if [ -z "$1" ]
+then
+      echo "Usage bash runDomainScan.sh {domain.com}"
+      exit 0
+fi
 ######################################################
 ###############Gather Information#####################
 ######################################################
