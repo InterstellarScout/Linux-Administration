@@ -1,0 +1,270 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Friday, June 21, 2019 3:01:05 PM
+   Source : C:\Users\
+     Dest : P:\INTERNPC-06.21.2019\
+
+    Files : *.*
+	    
+ Exc Dirs : AppData
+	    
+  Options : *.* /V /S /E /DCOPY:DA /COPY:DAT /PURGE /MIR /NP /XJD /XA:SH /MT:32 /R:5 /W:15 
+
+------------------------------------------------------------------------------
+
+	        attrib		     174	C:\Users\desktop.ini
+	    junction      -1	C:\Users\All Users\
+	    junction      -1	C:\Users\Default User\
+	        attrib		   57344	C:\Users\Default\NTUSER.DAT.LOG1
+	        attrib		       0	C:\Users\Default\NTUSER.DAT.LOG2
+	        attrib		   65536	C:\Users\Default\NTUSER.DAT{8ebe95f7-3dcb-11e8-a9d9-7cfe90913f50}.TM.blf
+	        attrib		  524288	C:\Users\Default\NTUSER.DAT{8ebe95f7-3dcb-11e8-a9d9-7cfe90913f50}.TMContainer00000000000000000001.regtrans-ms
+	        attrib		  524288	C:\Users\Default\NTUSER.DAT{8ebe95f7-3dcb-11e8-a9d9-7cfe90913f50}.TMContainer00000000000000000002.regtrans-ms
+	          same		  262144	C:\Users\Default\NTUSER.DAT
+	    junction      -1	C:\Users\Default\Application Data\
+	    junction      -1	C:\Users\Default\Cookies\
+	    junction      -1	C:\Users\Default\Local Settings\
+	    junction      -1	C:\Users\Default\My Documents\
+	    junction      -1	C:\Users\Default\NetHood\
+	    junction      -1	C:\Users\Default\PrintHood\
+	    junction      -1	C:\Users\Default\Recent\
+	    junction      -1	C:\Users\Default\SendTo\
+	    junction      -1	C:\Users\Default\Start Menu\
+	    junction      -1	C:\Users\Default\Templates\
+	       named      -1	C:\Users\Default\AppData\
+	        attrib		   2.2 m	C:\Users\mdgintern\NTUSER.DAT
+	        attrib		  655360	C:\Users\mdgintern\ntuser.dat.LOG1
+	        attrib		  458752	C:\Users\mdgintern\ntuser.dat.LOG2
+	        attrib		   1.0 m	C:\Users\mdgintern\NTUSER.DAT{8ebe95f6-3dcb-11e8-a9d9-7cfe90913f50}.TxR.0.regtrans-ms
+	        attrib		   1.0 m	C:\Users\mdgintern\NTUSER.DAT{8ebe95f6-3dcb-11e8-a9d9-7cfe90913f50}.TxR.1.regtrans-ms
+	        attrib		   1.0 m	C:\Users\mdgintern\NTUSER.DAT{8ebe95f6-3dcb-11e8-a9d9-7cfe90913f50}.TxR.2.regtrans-ms
+	        attrib		   65536	C:\Users\mdgintern\NTUSER.DAT{8ebe95f6-3dcb-11e8-a9d9-7cfe90913f50}.TxR.blf
+	        attrib		   65536	C:\Users\mdgintern\NTUSER.DAT{8ebe95f7-3dcb-11e8-a9d9-7cfe90913f50}.TM.blf
+	        attrib		  524288	C:\Users\mdgintern\NTUSER.DAT{8ebe95f7-3dcb-11e8-a9d9-7cfe90913f50}.TMContainer00000000000000000001.regtrans-ms
+	        attrib		  524288	C:\Users\mdgintern\NTUSER.DAT{8ebe95f7-3dcb-11e8-a9d9-7cfe90913f50}.TMContainer00000000000000000002.regtrans-ms
+	        attrib		      20	C:\Users\mdgintern\ntuser.ini
+	    junction      -1	C:\Users\mdgintern\Application Data\
+	    junction      -1	C:\Users\mdgintern\Cookies\
+	    junction      -1	C:\Users\mdgintern\Local Settings\
+	    junction      -1	C:\Users\mdgintern\My Documents\
+	    junction      -1	C:\Users\mdgintern\NetHood\
+	    junction      -1	C:\Users\mdgintern\PrintHood\
+	    junction      -1	C:\Users\mdgintern\Recent\
+	    junction      -1	C:\Users\mdgintern\SendTo\
+	    junction      -1	C:\Users\mdgintern\Start Menu\
+	    junction      -1	C:\Users\mdgintern\Templates\
+	       named      -1	C:\Users\mdgintern\AppData\
+	        attrib		  524288	C:\Users\mdg\NTUSER.DAT
+	        attrib		  180224	C:\Users\mdg\ntuser.dat.LOG1
+	        attrib		   32768	C:\Users\mdg\ntuser.dat.LOG2
+	        attrib		   65536	C:\Users\mdg\NTUSER.DAT{8ebe95f7-3dcb-11e8-a9d9-7cfe90913f50}.TM.blf
+	        attrib		  524288	C:\Users\mdg\NTUSER.DAT{8ebe95f7-3dcb-11e8-a9d9-7cfe90913f50}.TMContainer00000000000000000001.regtrans-ms
+	        attrib		  524288	C:\Users\mdg\NTUSER.DAT{8ebe95f7-3dcb-11e8-a9d9-7cfe90913f50}.TMContainer00000000000000000002.regtrans-ms
+	        attrib		      20	C:\Users\mdg\ntuser.ini
+	    junction      -1	C:\Users\mdg\Application Data\
+	    junction      -1	C:\Users\mdg\Cookies\
+	    junction      -1	C:\Users\mdg\Local Settings\
+	    junction      -1	C:\Users\mdg\My Documents\
+	    junction      -1	C:\Users\mdg\NetHood\
+	    junction      -1	C:\Users\mdg\PrintHood\
+	    junction      -1	C:\Users\mdg\Recent\
+	    junction      -1	C:\Users\mdg\SendTo\
+	    junction      -1	C:\Users\mdg\Start Menu\
+	    junction      -1	C:\Users\mdg\Templates\
+	       named      -1	C:\Users\mdg\AppData\
+	        attrib		     174	C:\Users\Public\desktop.ini
+	    junction      -1	C:\Users\Default\Documents\My Music\
+	    junction      -1	C:\Users\Default\Documents\My Pictures\
+	    junction      -1	C:\Users\Default\Documents\My Videos\
+	        attrib		   1.0 m	C:\Users\MDIntern\NTUSER.DAT
+	        attrib		   77824	C:\Users\MDIntern\ntuser.dat.LOG1
+	        attrib		  155648	C:\Users\MDIntern\ntuser.dat.LOG2
+	        attrib		   65536	C:\Users\MDIntern\NTUSER.DAT{8ebe95f7-3dcb-11e8-a9d9-7cfe90913f50}.TM.blf
+	        attrib		  524288	C:\Users\MDIntern\NTUSER.DAT{8ebe95f7-3dcb-11e8-a9d9-7cfe90913f50}.TMContainer00000000000000000001.regtrans-ms
+	        attrib		  524288	C:\Users\MDIntern\NTUSER.DAT{8ebe95f7-3dcb-11e8-a9d9-7cfe90913f50}.TMContainer00000000000000000002.regtrans-ms
+	        attrib		      20	C:\Users\MDIntern\ntuser.ini
+	    junction      -1	C:\Users\MDIntern\Application Data\
+	    junction      -1	C:\Users\MDIntern\Cookies\
+	    junction      -1	C:\Users\MDIntern\Local Settings\
+	    junction      -1	C:\Users\MDIntern\My Documents\
+	    junction      -1	C:\Users\MDIntern\NetHood\
+	    junction      -1	C:\Users\MDIntern\PrintHood\
+	    junction      -1	C:\Users\MDIntern\Recent\
+	    junction      -1	C:\Users\MDIntern\SendTo\
+	    junction      -1	C:\Users\MDIntern\Start Menu\
+	    junction      -1	C:\Users\MDIntern\Templates\
+	       named      -1	C:\Users\MDIntern\AppData\
+	        attrib		     298	C:\Users\mdgintern\3D Objects\desktop.ini
+	        attrib		     412	C:\Users\mdgintern\Contacts\desktop.ini
+	        attrib		    2222	C:\Users\mdgintern\Documents\Default.rdp
+	        attrib		     402	C:\Users\mdgintern\Documents\desktop.ini
+	          same		    1592	C:\Users\mdgintern\Documents\A Third-Wall-X47.pdf
+	          same		    1592	C:\Users\mdgintern\Documents\A Third-Wall-X48.docx
+	          same		    1592	C:\Users\mdgintern\Documents\A Third-Wall-X49.xlsx
+	          same		    1592	C:\Users\mdgintern\Documents\A Third-Wall-X50.mdb
+	    junction      -1	C:\Users\mdgintern\Documents\My Music\
+	    junction      -1	C:\Users\mdgintern\Documents\My Pictures\
+	    junction      -1	C:\Users\mdgintern\Documents\My Videos\
+	        attrib		     282	C:\Users\mdgintern\Downloads\desktop.ini
+	          same		   3.4 m	C:\Users\mdgintern\Downloads\npp.7.7.1.Installer.exe
+	        attrib		     402	C:\Users\mdgintern\Favorites\desktop.ini
+	          same		     208	C:\Users\mdgintern\Favorites\Bing.url
+	        attrib		     504	C:\Users\mdgintern\Links\desktop.ini
+	          same		     506	C:\Users\mdgintern\Links\Desktop.lnk
+	          same		     959	C:\Users\mdgintern\Links\Downloads.lnk
+	        attrib		     504	C:\Users\mdgintern\Music\desktop.ini
+	        attrib		     100	C:\Users\mdgintern\OneDrive\desktop.ini
+	        attrib		     282	C:\Users\mdgintern\Desktop\desktop.ini
+	          same		    1417	C:\Users\mdgintern\Desktop\Microsoft Edge.lnk
+	          same		     296	C:\Users\mdgintern\Desktop\notes.txt
+	          same		    1475	C:\Users\mdgintern\Desktop\Opera Browser.lnk
+	          same		   13945	C:\Users\mdgintern\Desktop\ProfilePicture.jpg
+	          same		     873	C:\Users\mdgintern\Desktop\SaveUserLibrary.bat
+	          same		     186	C:\Users\mdgintern\Desktop\SplitDate.bat
+	        attrib		     504	C:\Users\mdgintern\Pictures\desktop.ini
+	        attrib		     282	C:\Users\mdgintern\Saved Games\desktop.ini
+	        attrib		     524	C:\Users\mdgintern\Searches\desktop.ini
+	        attrib		     248	C:\Users\mdgintern\Searches\Everywhere.search-ms
+	          same		   7.2 m	C:\Users\mdg\Downloads\Thirdwall Installer.exe
+	        attrib		     248	C:\Users\mdgintern\Searches\Indexed Locations.search-ms
+	          same		    1397	C:\Users\mdgintern\Searches\Microsoft OneNote.searchconnector-ms
+	          same		     859	C:\Users\mdgintern\Searches\winrt--{S-1-5-21-2461615496-4111926555-2967778813-2138}-.searchconnector-ms
+	        attrib		     504	C:\Users\mdgintern\Videos\desktop.ini
+	    junction      -1	C:\Users\mdg\Documents\My Music\
+	    junction      -1	C:\Users\mdg\Documents\My Pictures\
+	    junction      -1	C:\Users\mdg\Documents\My Videos\
+	        attrib		     278	C:\Users\Public\Documents\desktop.ini
+	    junction      -1	C:\Users\Public\Documents\My Music\
+	    junction      -1	C:\Users\Public\Documents\My Pictures\
+	    junction      -1	C:\Users\Public\Documents\My Videos\
+	        attrib		     196	C:\Users\Public\AccountPictures\desktop.ini
+	        attrib		     380	C:\Users\Public\Pictures\desktop.ini
+	        attrib		     174	C:\Users\Public\Downloads\desktop.ini
+	        attrib		     174	C:\Users\Public\Desktop\desktop.ini
+	          same		    2124	C:\Users\Public\Desktop\Acrobat Reader DC.lnk
+	          same		    1286	C:\Users\Public\Desktop\Automate Control Center.lnk
+	          same		    2617	C:\Users\Public\Desktop\ConnectWise Manage.lnk
+	          same		    2469	C:\Users\Public\Desktop\Mouse without Borders.lnk
+	        attrib		     380	C:\Users\Public\Videos\desktop.ini
+	        attrib		     175	C:\Users\Public\Libraries\desktop.ini
+	          same		     999	C:\Users\Public\Libraries\RecordedTV.library-ms
+	        attrib		     380	C:\Users\Public\Music\desktop.ini
+	        attrib		     298	C:\Users\MDIntern\3D Objects\desktop.ini
+	        attrib		     412	C:\Users\MDIntern\Contacts\desktop.ini
+	        attrib		     402	C:\Users\MDIntern\Documents\desktop.ini
+	    junction      -1	C:\Users\MDIntern\Documents\My Music\
+	    junction      -1	C:\Users\MDIntern\Documents\My Pictures\
+	    junction      -1	C:\Users\MDIntern\Documents\My Videos\
+	        attrib		     402	C:\Users\MDIntern\Favorites\desktop.ini
+	        attrib		     282	C:\Users\MDIntern\Desktop\desktop.ini
+	        attrib		     282	C:\Users\MDIntern\Downloads\desktop.ini
+	        attrib		     504	C:\Users\MDIntern\Music\desktop.ini
+	        attrib		      99	C:\Users\MDIntern\OneDrive\desktop.ini
+	        attrib		     504	C:\Users\MDIntern\Pictures\desktop.ini
+	        attrib		     504	C:\Users\MDIntern\Links\desktop.ini
+	        attrib		      80	C:\Users\mdgintern\Favorites\Links\desktop.ini
+	        attrib		     190	
+C:\Users\mdgintern\Pictures\Camera Roll\desktop.ini	        attrib		     190	C:\Users\mdgintern\Pictures\Saved Pictures\desktop.ini
+	        attrib		     282	C:\Users\MDIntern\Saved Games\desktop.ini
+	        attrib		     524	C:\Users\MDIntern\Searches\desktop.ini
+	        attrib		     248	C:\Users\MDIntern\Searches\Everywhere.search-ms
+	        attrib		     248	C:\Users\MDIntern\Searches\Indexed Locations.search-ms
+	        attrib		     504	C:\Users\MDIntern\Videos\desktop.ini
+	        attrib		     190	C:\Users\MDIntern\Pictures\Saved Pictures\desktop.ini
+	        attrib		     190	C:\Users\MDIntern\Pictures\Camera Roll\desktop.ini
+	    Newer     		       0	C:\Users\mdgintern\Desktop\Backup.log
+	    New File  		     208	C:\Users\MDIntern\Favorites\Bing.url
+	          same		    3622	C:\Users\mdgintern\MicrosoftEdgeBackups\backups\MicrosoftEdgeBackup20190607\MicrosoftEdgeCookiesBackup.dat
+	          same		       0	C:\Users\mdgintern\MicrosoftEdgeBackups\backups\MicrosoftEdgeBackup20190607\MicrosoftEdgeSettingsBackup.txt
+	        attrib		      80	C:\Users\MDIntern\Favorites\Links\desktop.ini
+	          same		 122.4 m	C:\Users\mdgintern\Desktop\Tools\Micro Trend\Install MT Agent Client\agentX64.msi
+	          same		    8548	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\ReadMe.txt
+	          same		    1265	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\Stop.bat
+	          same		    3306	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\Uninstall.bat
+	          same		  524288	C:\Users\mdgintern\MicrosoftEdgeBackups\backups\MicrosoftEdgeBackup20190607\DatastoreBackup\edb00001.log
+	          same		      21	C:\Users\mdgintern\MicrosoftEdgeBackups\backups\MicrosoftEdgeBackup20190607\DatastoreBackup\schema.txt
+	          same		   2.0 m	C:\Users\mdgintern\MicrosoftEdgeBackups\backups\MicrosoftEdgeBackup20190607\DatastoreBackup\spartan.edb
+	          same		       0	C:\Users\mdgintern\MicrosoftEdgeBackups\backups\MicrosoftEdgeBackup20190607\DatastoreBackup\spartan.pat
+	          same		     538	C:\Users\mdgintern\MicrosoftEdgeBackups\backups\MicrosoftEdgeBackup20190607\Protected - It is a violation of Windows Policy to modify\Backup.dat
+	          same		   17971	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\AgentRemoval.bat
+	          same		    3446	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\AgentStop.bat
+	          same		   57344	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\boost_date_time-vc80-mt-1_36.dll
+	          same		   49152	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\boost_thread-vc80-mt-1_36.dll
+	          same		      76	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\generate_label.bat
+	          same		  916224	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\helperUCInstallation.dll
+	          same		     222	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\INFList.ini
+	          same		  314704	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\instInstallationLibrary.dll
+	          same		  235328	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\libNetCtrl.dll
+	          same		     888	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\msg_log_collected.txt
+	          same		     646	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\msg_uninstall_end.txt
+	          same		  111944	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\MsiZap.exe
+	          same		  219944	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\outer_AMSP_ClientLibrary.dll
+	          same		   22512	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\RemoveINF.exe
+	          same		      49	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\RemoveNSC.ini
+	          same		   1.4 m	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\SvrSvcSetup.exe
+	          same		  250536	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\SvrSvcSetup_64x.exe
+	          same		   19688	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\utilAccessControl.dll
+	          same		   88104	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\utilComponentInfo.dll
+	          same		   79864	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\utilDebugLog.dll
+	          same		   24352	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\utilGenericLoader.dll
+	          same		  355904	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\utilInstallation.dll
+	          same		   92224	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\utilIPC.dll
+	          same		  112824	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\utilJsonHandle.dll
+	          same		   57288	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\utilMsgBuffer.dll
+	          same		  108704	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\utilRPC.dll
+	          same		   22272	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\utilThread.dll
+	          same		      55	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\Version.txt
+	          same		  319456	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x86\DIFxAPI.dll
+	          same		  133136	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x86\ncfg.exe
+	          same		  374288	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x86\RestartManager.exe
+	          same		    3046	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x86\tmlwf.inf
+	          same		  138256	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x86\tmlwfins.exe
+	          same		  525792	
+	          same		  203792	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x64\DIFxAPI.dll
+C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x86\TmNSCIns.dll	          same		  154640	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x64\ncfg.exe
+	          same		    1740	
+C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x86\TmTdi.inf	          same		  635920	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x64\RestartManager.exe
+	          same		    2566	
+C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x86\tmwfp.inf	          same		    3046	
+C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x64\tmlwf.inf	          same		  128016	
+C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x86\tmwfpins.exe	          same		  153104	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x64\tmlwfins.exe
+	          same		    2300	
+C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x86\TM_CFW.inf	          same		  232464	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x64\TmNSCIns.dll
+	          same		    1740	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x64\TmTdi.inf
+	          same		    2566	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x64\tmwfp.inf
+	          same		  140816	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x64\tmwfpins.exe
+	          same		    2300	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\x64\TM_CFW.inf
+	    New File  		    1417	C:\Users\MDIntern\Desktop\Microsoft Edge.lnk
+	    New File  		     501	C:\Users\MDIntern\Links\Desktop.lnk
+	          same		    3472	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\zip\LICENSE
+	          same		   12982	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\zip\README
+	          same		    6549	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\zip\README.CR
+	          same		  290816	C:\Users\mdgintern\Desktop\Tools\Micro Trend\SA_Uninstall\AgentRemoval\zip\zip.exe
+	    New File  		     946	C:\Users\MDIntern\Links\Downloads.lnk
+	    New File  		     855	C:\Users\MDIntern\Searches\winrt--{S-1-5-21-709962964-1960832527-3522205831-1001}-.searchconnector-ms
+	    New File  		    3698	C:\Users\MDIntern\MicrosoftEdgeBackups\backups\MicrosoftEdgeBackup20190607\MicrosoftEdgeCookiesBackup.dat
+	    New File  		       0	C:\Users\MDIntern\MicrosoftEdgeBackups\backups\MicrosoftEdgeBackup20190607\MicrosoftEdgeSettingsBackup.txt
+	    New File  		     538	C:\Users\MDIntern\MicrosoftEdgeBackups\backups\MicrosoftEdgeBackup20190607\Protected - It is a violation of Windows Policy to modify\Backup.dat
+	    New File  		  524288	C:\Users\MDIntern\MicrosoftEdgeBackups\backups\MicrosoftEdgeBackup20190607\DatastoreBackup\edb00001.log
+	    New File  		      21	C:\Users\MDIntern\MicrosoftEdgeBackups\backups\MicrosoftEdgeBackup20190607\DatastoreBackup\schema.txt
+	    New File  		   2.0 m	C:\Users\MDIntern\MicrosoftEdgeBackups\backups\MicrosoftEdgeBackup20190607\DatastoreBackup\spartan.edb
+	    New File  		       0	C:\Users\MDIntern\MicrosoftEdgeBackups\backups\MicrosoftEdgeBackup20190607\DatastoreBackup\spartan.pat
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :       151        90       130         0         0         0
+   Files :       176        13       163         0         0         0
+   Bytes :  158.99 m    2.51 m  156.48 m         0         0         0
+   Times :   0:00:02   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :             8243175 Bytes/sec.
+   Speed :             471.678 MegaBytes/min.
+   Ended : Friday, June 21, 2019 3:01:06 PM
+
+Copy job completed. 
+Dismounted. 

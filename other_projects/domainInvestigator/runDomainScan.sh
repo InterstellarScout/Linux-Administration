@@ -2,13 +2,11 @@
 #This automated ip scoping tool is used to investigate a target's external network.
 #This is a Black Box Scan, so we are looking for what we can from the outside.
 #Required programs are:
-#sudo apt-get install geoip-bin
-#wget https://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz
-#gunzip GeoLiteCity.dat.gz
-#sudo cp GeoLiteCity.dat /usr/share/GeoIP/
-#nmap
-#whois
-#dnsmap
+#sudo apt-get update
+#sudo apt-get install dnsrecon
+#sudo apt-get install dnsmap
+#sudo apt-get install nmap
+#sudo apt-get install whois
 
 #Usage: bash runDomainScan.sh {domain}
 

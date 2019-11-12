@@ -2,13 +2,12 @@
 #This automated ip scoping tool is used to investigate a target's external network.
 #This is a Black Box Scan, so we are looking for what we can from the outside.
 #Required programs are:
-#sudo apt-get install geoip-bin
-#wget https://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz
-#gunzip GeoLiteCity.dat.gz
-#sudo cp GeoLiteCity.dat /usr/share/GeoIP/
-#nmap
-#whois
-#dnsmap
+#sudo apt-get update
+#sudo apt-get install dnsrecon
+#sudo apt-get install dnsmap
+#sudo apt-get install nmap
+#sudo apt-get install whois
+
 domainCheck=0 #This variable is needed to jump the domain question if needed.
 
 #Must run as root
@@ -254,8 +253,16 @@ echo Objective: Take a deeper look at open ports. | tee -a $fileOutput
 echo Result: | tee -a $fileOutput
 for address in "${IPArray[@]}"
   do
-  #For each address:
-done
+    #For each address:
+    echo "Scanning ports for $address" | tee -a $fileOutput
+    #Get the ports for the address
+    nmap -Su -min-rate 5000 $address | tee -a $fileOutput
+    for port in "${Ports[@]}"
+      do
+        echo "Scanning ports for $address" | tee -a $fileOutput
+        nmap -sC -p${port} -T4 $TargetIpAddress | tee -a $fileOutput
+      done
+  done
 
 echo | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
