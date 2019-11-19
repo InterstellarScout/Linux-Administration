@@ -89,7 +89,6 @@ for file in fileList:  #for each file
                 firstList[2] = "'"
             if firstList[3] == ".":
                 firstList[3] = "'"
-
             first = "".join(firstList)
             #print(first)
 
