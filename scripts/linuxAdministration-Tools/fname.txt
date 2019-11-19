@@ -1,0 +1,2 @@
+2019-11-18 18:25:42.486577 Clocked: in Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-18 18:25:50.877552 Clocked: in Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
