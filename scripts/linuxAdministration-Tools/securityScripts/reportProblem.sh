@@ -89,7 +89,7 @@ then
 
 elif [ "$errMessage" = "1" ]; #Change detected on passwd file
 then
-  errorBody="Error Message: ${1}"
+  errorBody="Error Message: ${1}\n"
   errorInfo="Alert: A change has been detected on the passwd file. A user may have been created. Authorized?"
   #Required Variables for each program that will be using this.
   alert=2
@@ -104,16 +104,12 @@ if [ "$alert" = "4" ];
 then
   #AlertLevel4 - Informational
   subject="Server-${host}-Information"
-  #Append the Log
-  #appendLogs $subject $origin $errorbody $errorInfo
   appendLogs $subject $origin $errorBody $errorInfo
 
 elif [ "$alert" = "3" ];
 then
   #AlertLevel3 - Warning
   subject="Server-${host}-Warning"
-  #Append the Log
-  #appendLogs $subject $origin $errorbody $errorInfo
   appendLogs $subject $origin $errorBody $errorInfo
 
 elif [ "$alert" = "2" ];
@@ -122,8 +118,6 @@ then
   subject="Server-${host}-Alert"
   #Send an email
   sendEmail $subject $body
-  #Append the Log
-  #appendLogs $subject $origin $errorbody $errorInfo
   appendLogs $subject $origin $errorBody $errorInfo
 
 elif [ "$alert" = "1" ];
@@ -132,8 +126,6 @@ then
   subject="Server-${host}-Critical-Alert"
   #Send the email
   sendEmail $subject $body
-  #Append the Log
-  #appendLogs $subject $origin $errorbody $errorInfo
   appendLogs $subject $origin $errorBody $errorInfo
 
 fi

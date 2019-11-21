@@ -51,7 +51,7 @@ def replace(file_path, pattern, subst):
     move(abs_path, file_path)
 
 #Get the name of this data being added
-dataName = "Breach#11"
+dataName = "Breach#1222"
 
 #Get the Files that we will be indexing
 path = "data/"
@@ -80,15 +80,20 @@ for file in fileList:  #for each file
             second = line[1]  # Second = password#@!1
             dataToAppend = dataName + "," + second
 
+            # firstList = list(first)
+            # if firstList[0] == ".":
+            #     firstList[0] = "'"
+            # if firstList[1] == ".":
+            #     firstList[1] = "'"
+            # if firstList[2] == ".":
+            #     firstList[2] = "'"
+            # if firstList[3] == ".":
+            #     firstList[3] = "'"
+            # first = "".join(firstList)
             firstList = list(first)
-            if firstList[0] == ".":
-                firstList[0] = "'"
-            if firstList[1] == ".":
-                firstList[1] = "'"
-            if firstList[2] == ".":
-                firstList[2] = "'"
-            if firstList[3] == ".":
-                firstList[3] = "'"
+            for loopNum in range(4):
+                if firstList[loopNum] == ".":
+                    firstList[loopNum] = "'"
             first = "".join(firstList)
             #print(first)
 
@@ -145,6 +150,10 @@ for file in fileList:  #for each file
                         logFile.write(first + " could not be added. Invalid Name.")
                     logFile.close()
 
+    with open("log.txt", "a") as logFile:
+        print(file + " has been concluded.")
+        logFile.write(file + " has been concluded.\n")
+        logFile.close()
 
 
 
