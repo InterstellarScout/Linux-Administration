@@ -174,6 +174,14 @@ echo | tee -a $fileOutput
 
 echo | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
+echo | tee -a $fileOutput
+
+  echo Command: nslookup -query=any $TargetDomain | tee -a $fileOutput
+  echo Objective: Check out domain records and search for any unneccessary entries that may shed some light on the domain\'s workings. | tee -a $fileOutput
+  echo Results: | tee -a $fileOutput
+  dnsrecon -d $TargetDomain -g  | tee -a $fileOutput
+
+echo ------------------------------------------------------------ | tee -a $fileOutput
 echo --------------------------The End--------------------------- | tee -a $fileOutput
 echo ------------------------------------------------------------ | tee -a $fileOutput
 echo | tee -a $fileOutput
