@@ -31,3 +31,6 @@ data/3.txt has been concluded.
 data/1.txt has been concluded.
 data/2.txt has been concluded.
 data/3.txt has been concluded.
+data/1.txt has been concluded with 16 lines.
+data/2.txt has been concluded with 23 lines.
+data/3.txt has been concluded with 27 lines.
