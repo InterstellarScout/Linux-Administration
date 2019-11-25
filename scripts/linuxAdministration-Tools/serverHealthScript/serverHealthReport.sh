@@ -2,7 +2,7 @@
 #Dean Sheldon
 #This program is used to drop display system information both on your screen and into a file called: systemInfo.txt
 # clear the screen
-file=networkinfo.txt
+file=serverinfo.txt
 
 clear
 

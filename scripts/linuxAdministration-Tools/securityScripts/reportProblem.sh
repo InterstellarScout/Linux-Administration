@@ -95,6 +95,14 @@ then
   alert=2
   origin="Passwd Alert"
 
+elif [ "$errMessage" = "2" ];
+then
+  errorBody="Error Message: ${1}\n"
+  errorInfo="Alert: A change has been detected on the directory ${2}. Authorized?"
+  #Required Variables for each program that will be using this.
+  alert=3
+  origin="Passwd Alert"
+
 fi
 
 body=${mainHeader}${errorBody}${errorInfo}${mainFooter}
