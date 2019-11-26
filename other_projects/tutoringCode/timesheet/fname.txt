@@ -1,0 +1,27 @@
+2019-11-25 17:06:03.078498 Clocked: in Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 17:06:28.164879 Clocked: in Name:Santo Bobbert, Employee:5234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 17:13:10.773477 Clocked: in Name:Robert Bobbert, Employee:4567, Department:Love, Building:(O), Occupation:Skeleton Archer, Priority:No Access
+2019-11-25 17:19:25.775062 Clocked: in Name:Harry Spotter, Employee:5678, Department:Cute, Building:(X), Occupation:Angry Guy, Priority:Partial Access
+2019-11-25 17:20:20.725002 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 18:02:49.690915 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 18:04:42.106483 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 18:04:57.027574 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 18:13:08.069058 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 18:14:34.172894 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 18:48:23.699553 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 18:52:15.895834 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:08:09.862443 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:10:41.614766 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:21:28.374954 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:22:50.614832 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:23:09.046914 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:28:27.854050 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:28:51.381513 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:29:33.637823 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:30:42.773092 Clocked: in Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:42:04.531631 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:42:37.670412 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:43:39.509569 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:46:57.077221 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:49:27.332915 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
+2019-11-25 19:50:10.708931 Clocked: out Name:Jerry Yang, Employee:1234, Department:Design, Building:(A), Occupation:Manager, Priority:FULL Access
