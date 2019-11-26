@@ -31,15 +31,34 @@ from shutil import move
 from os import fdopen, remove
 
 
-def file_len(
-        fname):  # https://stackoverflow.com/questions/845058/how-to-get-line-count-of-a-large-file-cheaply-in-python
-    with open(fname) as f:
-        count = 0
-        for l in enumerate(f):
-            count = count + 1
-    f.close()
-    return count
+def file_len(fname):  # https://stackoverflow.com/questions/845058/how-to-get-line-count-of-a-large-file-cheaply-in-python
+    try:
+        with open(fname) as f:
+            count = 0
+            for l in enumerate(f):
+                count = count + 1
+            f.close()
+        return count
+    except:
+        rebuildFile(fname)
+        count = file_len()
+        return count
 
+def rebuildFile(fname):
+    # Create temp file
+    fh, abs_path = mkstemp()
+    with fdopen(fh, 'w') as new_file:
+        with open(fname) as old_file:
+            for line in old_file:
+                try:
+                    new_file.write(line)
+                except:
+                    #line failed - skip it.
+                    continue
+    # Remove original file
+    remove(fname)
+    # Move new file
+    move(abs_path, fname)
 
 def replace(file_path, pattern, subst):
     # Create temp file
