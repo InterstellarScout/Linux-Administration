@@ -5,7 +5,13 @@ function eprograms {
     echo "================================================================="
     echo "=======================Enabeled Programs:========================"
     echo "================================================================="
-    service --status-all | awk {' if ($2 =="+") printf ("%5s\t%s\n", $2, $4)'}
+    if [ -f /etc/redhat-release ]; then #If redhat or Cent OS
+        systemctl list-unit-files --type=service | awk {' if ($2 =="enabled") printf ("%5s\t%s\n", $2, $1)'}
+    fi
+
+    if [ -f /etc/lsb-release ]; then #If ubuntu
+        service --status-all | awk {' if ($2 =="+") printf ("%5s\t%s\n", $2, $4)'}
+    fi
     echo "Press \"Enter\" to continue"
     read go
     }
@@ -14,7 +20,13 @@ function dprograms {
     echo "================================================================="
     echo "======================Disabeled Programs:========================"
     echo "================================================================="
-    service --status-all | awk {' if ($2 =="-") printf ("%5s\t%s\n", $2, $4)'}
+    if [ -f /etc/redhat-release ]; then #If redhat or Cent OS
+        systemctl list-unit-files --type=service | awk {' if ($2 =="disabled" || $2 =="static") printf ("%5s\t%s\n", $2, $1)'}
+    fi
+
+    if [ -f /etc/lsb-release ]; then #If ubuntu
+        service --status-all | awk {' if ($2 =="+") printf ("%5s\t%s\n", $2, $4)'}
+    fi
     echo "Press \"Enter\" to continue"
     read go
   }
@@ -24,7 +36,7 @@ function stopService {
   echo "Enter the exact name of the service shown above."
   read toStop
   sudo systemctl stop $toStop
-  echo $toStop has been started
+  echo $toStop has been stopped
   echo "Press \"Enter\" to continue"
   read go
 }
