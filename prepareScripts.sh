@@ -22,6 +22,7 @@ chmod 777 scripts/linuxAdministration-Tools/firewalls/hardenFirewall/hardenFirew
 
 #Security
 chmod 777 scripts/linuxAdministration-Tools/securityScripts/reportProblem.sh
+chmod 777 scripts/linuxAdministration-Tools/securityScripts/startupControl/startupControl.sh
 
 #Rotating MOTD
 chmod 777 scripts/rotating-motd/deploy.sh

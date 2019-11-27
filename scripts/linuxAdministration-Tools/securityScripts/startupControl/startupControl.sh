@@ -6,6 +6,8 @@ function eprograms {
     echo "=======================Enabeled Programs:========================"
     echo "================================================================="
     service --status-all | awk {' if ($2 =="+") printf ("%5s\t%s\n", $2, $4)'}
+    echo "Press \"Enter\" to continue"
+    read go
     }
 
 function dprograms {
@@ -13,6 +15,8 @@ function dprograms {
     echo "======================Disabeled Programs:========================"
     echo "================================================================="
     service --status-all | awk {' if ($2 =="-") printf ("%5s\t%s\n", $2, $4)'}
+    echo "Press \"Enter\" to continue"
+    read go
   }
 
 function stopService {
@@ -21,6 +25,8 @@ function stopService {
   read toStop
   sudo systemctl stop $toStop
   echo $toStop has been started
+  echo "Press \"Enter\" to continue"
+  read go
 }
 
 function startService {
@@ -29,6 +35,8 @@ function startService {
   read toStart
   sudo systemctl start $toStart
   echo $toStart has been started
+  echo "Press \"Enter\" to continue"
+  read go
 }
 
 function enableService {
@@ -37,6 +45,8 @@ function enableService {
   read toStart
   sudo systemctl enable $toStart
   echo $toStart has been enabeled
+  echo "Press \"Enter\" to continue"
+  read go
 }
 
 function disableService {
@@ -45,6 +55,8 @@ function disableService {
   read toStart
   sudo systemctl disable $toStart
   echo $toStart has been disabeled
+  echo "Press \"Enter\" to continue"
+  read go
 }
 
 function startup {
