@@ -54,6 +54,7 @@ function startup {
   echo Would you like to start \(s\) or stop \(st\) service?
   echo Would you like to prevent a program from starting on startup \(p\)?
   echo Would you like to allow a program to start on startup \(l/L\)?
+  echo Press any other key to exit.
   read answer
   if [[ "$answer" == "e" ]] || [[ "$answer" == "E" ]] || [[ "$answer" == "enable" ]] || [[ "$answer" == "Enable" ]];
     then
@@ -89,7 +90,7 @@ function startup {
       disableService #run enabeled programs
       startup
     else
-      echo Incorrect input.
+      echo Goodbye!
       exit 1
     fi
 }
