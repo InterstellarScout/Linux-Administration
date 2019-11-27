@@ -6,7 +6,7 @@ function eprograms {
     echo "=======================Enabeled Programs:========================"
     echo "================================================================="
     if [ -f /etc/redhat-release ]; then #If redhat or Cent OS
-        systemctl list-unit-files --type=service | awk {' if ($2 =="enabled") printf ("%5s\t%s\n", $2, $1)'}
+        systemctl list-unit-files --type=service | awk {' if ($2 =="enabled") printf ("%5s\t%s\n", $2, substr($1, 1, length($1)-8))'}
     fi
 
     if [ -f /etc/lsb-release ]; then #If ubuntu
@@ -21,7 +21,7 @@ function dprograms {
     echo "======================Disabeled Programs:========================"
     echo "================================================================="
     if [ -f /etc/redhat-release ]; then #If redhat or Cent OS
-        systemctl list-unit-files --type=service | awk {' if ($2 =="disabled" || $2 =="static") printf ("%5s\t%s\n", $2, $1)'}
+        systemctl list-unit-files --type=service | awk {' if ($2 =="enabled") printf ("%5s\t%s\n", $2, substr($1, 1, length($1)-8))'}
     fi
 
     if [ -f /etc/lsb-release ]; then #If ubuntu
