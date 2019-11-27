@@ -41,7 +41,7 @@ def file_len(fname):  # https://stackoverflow.com/questions/845058/how-to-get-li
         return count
     except:
         rebuildFile(fname)
-        count = file_len()
+        count = file_len(fname)
         return count
 
 def rebuildFile(fname):
