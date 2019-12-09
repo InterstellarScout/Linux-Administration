@@ -82,7 +82,7 @@ then
   errorBody="Error Message: ${1}"
   errorInfo="Everything is okay. You're doing a good job. Keep up the good work."
   #Required Variables for each program that will be using this.
-  alert=4
+  alert=1
   origin="Test Variable"
   #Use optional secondary if neccessary
   #progVar=$2
@@ -101,7 +101,7 @@ then
   errorInfo="Alert: A change has been detected on the directory ${2}. Authorized?"
   #Required Variables for each program that will be using this.
   alert=3
-  origin="Passwd Alert"
+  origin="Directory Change Alert"
 
 fi
 
