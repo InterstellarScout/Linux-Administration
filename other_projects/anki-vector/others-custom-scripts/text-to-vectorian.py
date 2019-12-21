@@ -699,7 +699,7 @@ bigramlist = {
 ("wz","anim_lookatphone_getin_01")
 }
 
-TextString = 'vector'
+TextString = 'vector is so cool! I love him so much. Yay yay yay yay yay mmmmhmmhmmhmhmmmhmmhmhmhahahahahhhahhahhahhahhahhahhhaaaaha.'
 
 # Insert a space inbetween each character in TextString
 TextString.replace(" ", "")
