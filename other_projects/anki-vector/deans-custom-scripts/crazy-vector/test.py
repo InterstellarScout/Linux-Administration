@@ -5,5 +5,5 @@ from random import randint
 seed(1)
 # generate some integers
 for _ in range(10):
-	value = randint(0, 500)
+	value = randint(-500, 500)
 	print(value)

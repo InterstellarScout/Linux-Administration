@@ -22,24 +22,28 @@ from anki_vector.util import degrees, distance_mm, speed_mmps
 # generate random integer values
 from random import seed
 from random import randint
+from threading import Thread
+
 # seed random number generator
 seed(1)
 
-def main():
+def sound():
     args = anki_vector.util.parse_command_args()
     with anki_vector.Robot(args.serial) as robot:
-        robot.behavior.drive_off_charger()
-        #Play the crazy sounds
-        #robot.audio.stream_wav_file("r2d2-screams.wav", 75)
+        #robot.behavior.drive_off_charger()
+        robot.audio.stream_wav_file("r2d2-screams.wav", 75)
 
-        # Use a "for loop" to repeat the indented code 4 times
-        # Note: the _ variable name can be used when you don't need the value
-        for _ in range(4):
+def actions():
+    # Use a "for loop" to repeat the indented code 4 times
+    # Note: the _ variable name can be used when you don't need the value
+    args = anki_vector.util.parse_command_args()
+    with anki_vector.Robot(args.serial) as robot:
+        for _ in range(randint(0,10)):
             print("Raise Vector's lift...")
             robot.motors.set_lift_motor(5)
 
             print("Drive Vector straight...")
-            robot.behavior.drive_straight(distance_mm(200), speed_mmps(200)) #original 50
+            robot.behavior.drive_straight(distance_mm(200), speed_mmps(200))  # original 50
 
             print("Move Vector's lift...")
             robot.motors.set_lift_motor(-5.0)
@@ -47,14 +51,22 @@ def main():
             robot.motors.set_lift_motor(-5.0)
 
             print("Turn Vector in place...")
-            #robot.behavior.turn_in_place(degrees(455))
-            robot.behavior.turn_in_place(degrees(randint(0, 500)))
+            # robot.behavior.turn_in_place(degrees(455))
+            robot.behavior.turn_in_place(degrees(randint(-500, 500)))
 
             print("Move Vector's lift...")
             robot.motors.set_lift_motor(5.0)
             robot.motors.set_lift_motor(-5.0)
             robot.motors.set_lift_motor(5.0)
 
+def main():
+    args = anki_vector.util.parse_command_args()
+    with anki_vector.Robot(args.serial) as robot:
+        robot.behavior.drive_off_charger()
+        #Play the crazy sounds
+        Thread(target=sound).start()
+        #Do the crazy actions
+        Thread(target=actions).start()
 
 if __name__ == "__main__":
     main()
