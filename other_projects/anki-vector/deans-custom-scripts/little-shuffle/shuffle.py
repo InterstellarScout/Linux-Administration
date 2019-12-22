@@ -42,6 +42,7 @@ def actions():
     args = anki_vector.util.parse_command_args()
     with anki_vector.Robot(args.serial) as robot:
         for _ in range(3):
+            print("Loop start.")
             print("Nod head and Raise lift")
             robot.motors.set_lift_motor(5)
             time.sleep(.25)
@@ -127,6 +128,8 @@ def chacha():
         robot.behavior.say_text("Woo!")
         time.sleep(3)
         robot.behavior.say_text("Nice.")
+    print("End Dance")
+    Thread(target=sound).end()
 
 def main():
     args = anki_vector.util.parse_command_args()

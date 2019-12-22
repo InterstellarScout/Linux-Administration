@@ -714,13 +714,13 @@ Bigrams = []
 del myList[1::2]
 
 for i in myList:
-	Bigrams.append((''.join([w for w in i])).strip())
+    Bigrams.append((''.join([w for w in i])).strip())
 
 with anki_vector.Robot() as robot:
-	print ("translating ", TextString, " to Vectorian")
-	for i,c in enumerate(Bigrams):
-		for k,v in bigramlist:
-			if k == c:
-				print ("bigram ", c, " translates to ", v)
-				robot.anim.play_animation(v, ignore_body_track=True, ignore_head_track=False, ignore_lift_track=True)
-	print ("translation complete!")
+    print ("translating ", TextString, " to Vectorian")
+    for i,c in enumerate(Bigrams):
+        for k,v in bigramlist:
+            if k == c:
+                print ("bigram ", c, " translates to ", v)
+                robot.anim.play_animation(v, ignore_body_track=True, ignore_head_track=False, ignore_lift_track=True)
+    print ("translation complete!")
