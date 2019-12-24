@@ -23,6 +23,7 @@ from anki_vector.util import degrees, distance_mm, speed_mmps
 from random import seed
 from random import randint
 from threading import Thread
+import time
 
 # seed random number generator
 seed(1)
@@ -47,17 +48,24 @@ def actions():
 
             print("Move Vector's lift...")
             robot.motors.set_lift_motor(-5.0)
+            time.sleep(.25)
             robot.motors.set_lift_motor(5.0)
+            time.sleep(.25)
             robot.motors.set_lift_motor(-5.0)
+            time.sleep(.25)
 
             print("Turn Vector in place...")
             # robot.behavior.turn_in_place(degrees(455))
-            robot.behavior.turn_in_place(degrees(randint(-500, 500)))
+            robot.behavior.turn_in_place(degrees(randint(360)))
+            time.sleep(.25)
 
             print("Move Vector's lift...")
             robot.motors.set_lift_motor(5.0)
+            time.sleep(.25)
             robot.motors.set_lift_motor(-5.0)
+            time.sleep(.25)
             robot.motors.set_lift_motor(5.0)
+            time.sleep(.25)
 
 def main():
     args = anki_vector.util.parse_command_args()
