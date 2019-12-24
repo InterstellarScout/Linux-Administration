@@ -32,7 +32,7 @@ def sound():
     args = anki_vector.util.parse_command_args()
     with anki_vector.Robot(args.serial) as robot:
         #robot.behavior.drive_off_charger()
-        robot.audio.stream_wav_file("r2d2-screams.wav", 75)
+        robot.audio.stream_wav_file("r2d2-screams.wav", 100)
 
 def actions():
     # Use a "for loop" to repeat the indented code 4 times
@@ -56,7 +56,11 @@ def actions():
 
             print("Turn Vector in place...")
             # robot.behavior.turn_in_place(degrees(455))
-            robot.behavior.turn_in_place(degrees(randint(360)))
+            robot.behavior.turn_in_place(degrees(-90))
+            time.sleep(.25)
+            robot.behavior.turn_in_place(degrees(90))
+            time.sleep(.25)
+            robot.behavior.turn_in_place(degrees(450))
             time.sleep(.25)
 
             print("Move Vector's lift...")
